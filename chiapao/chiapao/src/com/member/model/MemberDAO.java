@@ -62,7 +62,7 @@ public class MemberDAO implements MemberDAO_interface{
 			pstmt.setString(13, memVO.getMem_Cardnum());
 			pstmt.setString(14, memVO.getMem_Carddue());
 			pstmt.setInt(15, memVO.getMem_Bonus());
-			byte[] pic = getPictureByte("img/test1.jpeg");
+			byte[] pic = getPictureByte("");
 			pstmt.setBytes(16,pic);
 			int rowCount = pstmt.executeUpdate();
 			System.out.println("新增 "+rowCount+" 會員資料");
@@ -115,8 +115,9 @@ public class MemberDAO implements MemberDAO_interface{
 			pstmt.setString(12, memVO.getMem_Cardnum());
 			pstmt.setString(13, memVO.getMem_Carddue());
 			pstmt.setInt(14, memVO.getMem_Bonus());
-			byte[] pic = getPictureByte("img/test2.jpg");
-			pstmt.setBytes(15, pic);
+//			byte[] pic = getPictureByte("img/test2.jpg");
+//			pstmt.setBytes(15, pic);
+			pstmt.setBytes(15,memVO.getMem_Photo());
 			pstmt.setString(16, memVO.getMem_Id());
 			int rowCount = pstmt.executeUpdate();
 			System.out.println("修改 "+rowCount+" 筆資料");
@@ -124,9 +125,9 @@ public class MemberDAO implements MemberDAO_interface{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
 		} finally{
 			if(pstmt!=null) {
 				try {
@@ -190,7 +191,7 @@ public class MemberDAO implements MemberDAO_interface{
 	}
 
 	@Override
-	public List<MemberVO> getall() {
+	public List<MemberVO> getAll() {
 		// TODO Auto-generated method stub
 		
 		Connection con = null;

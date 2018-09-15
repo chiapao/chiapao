@@ -61,7 +61,7 @@ public class MemberDAOJDBC_test {
 		
 //查詢會員
 //		MemberDAO dao = new MemberDAO();
-//		List<MemberVO> memberlist = dao.getall();
+//		List<MemberVO> memberlist = dao.getAll();
 //		for(MemberVO memVO:memberlist) {
 //			System.out.println("會員資料");
 //			System.out.println("編號："+memVO.getMem_No());

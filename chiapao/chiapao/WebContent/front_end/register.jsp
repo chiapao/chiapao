@@ -110,22 +110,22 @@
     <table  id="back">
         <tr>
             <td colspan="4" id="img-td">
-                <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+                <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)" name="mem_Photo">
                 <a href="javascript:doClick()">選一張照片吧~</a>
                 <div id="fileList">
                 </div>
             </td>
         </tr>
         <tr>
-            <td class="td1" ><label for="mem_No" class="col-form-label">帳號</label></td><td class="td2" ><input type="text" class="form-control-sm" id="mem_No" name=""></td><td colspan="2">預設線上訂單收件人資料：(以下非必填)</td>
+            <td class="td1" ><label for="mem_No" class="col-form-label">帳號</label></td><td class="td2" ><input type="text" class="form-control-sm" id="mem_No" name="mem_No"></td><td colspan="2">預設線上訂單收件人資料：(以下非必填)</td>
         </tr>
         <tr>
-            <td class="td1"><label for="mem_Id" class="col-form-label">密碼</label></td><td class="td2" ><input type="password" class="form-control-sm" id="mem_Id"></td>
-            <td class="td3"><label for="mem_Receiver" class="col-form-label">收件人</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Receiver"></td>
+            <td class="td1"><label for="mem_Id" class="col-form-label">密碼</label></td><td class="td2" ><input type="password" class="form-control-sm" id="mem_Id" name="mem_Id"></td>
+            <td class="td3"><label for="mem_Receiver" class="col-form-label">收件人</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Receiver" name="mem_Receiver"></td>
         </tr>
         <tr>
-            <td class="td1"><label for="mem_Name" class="col-form-label">姓名</label></td><td class="td2" ><input type="password" class="form-control-sm" id="mem_Name"></td>
-            <td class="td3"><label for="mem_Repno" class="col-form-label">郵遞區號</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Repno"></td>
+            <td class="td1"><label for="mem_Name" class="col-form-label">姓名</label></td><td class="td2" ><input type="password" class="form-control-sm" id="mem_Name" name="mem_Name"></td>
+            <td class="td3"><label for="mem_Repno" class="col-form-label">郵遞區號</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Repno" name="mem_Repno"></td>
         </tr>
         <tr>
             <td class="td1">性別</td>
@@ -137,21 +137,21 @@
             </td>
             <td class="td3">鄉鎮區市</td>
             <td class="td4">
-                <select style="display:inline" class="nice-select" name="city-list" id="city-list" ></select>
-                <select style="display:inline" name="sector-list" class="nice-select" id="sector-list"></select>
+                <select style="display:inline" class="nice-select" name="mem_Recounty" id="city-list" ></select>
+                <select style="display:inline" name="mem_Retown" class="nice-select" id="sector-list"></select>
             </td>
         </tr>
         <tr>
-            <td class="td1"><label for="mem_Bir" class="col-form-label">生日</label></td><td class="td2" ><input type="Date" class="form-control-sm" id="mem_Bir"></td>
-            <td class="td3"><label for="mem_Readdr" class="col-form-label">地址</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Readdr"></td>
+            <td class="td1"><label for="mem_Bir" class="col-form-label">生日</label></td><td class="td2" ><input type="Date" class="form-control-sm" id="mem_Bir" name="mem_Bir"></td>
+            <td class="td3"><label for="mem_Readdr" class="col-form-label">地址</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Readdr" name="mem_Readdr"></td>
         </tr>
         <tr>
-            <td class="td1"><label for="mem_Mail" class="col-form-label">信箱</label></td><td class="td2" ><input type="email" class="form-control-sm" id="mem_Mail"></td>
-            <td class="td3"><label for="mem_Cardnum" class="col-form-label">信用卡</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Cardnum"></td>
+            <td class="td1"><label for="mem_Mail" class="col-form-label">信箱</label></td><td class="td2" ><input type="email" class="form-control-sm" id="mem_Mail" name="mem_Mail"></td>
+            <td class="td3"><label for="mem_Cardnum" class="col-form-label">信用卡</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Cardnum" name="mem_Cardnum"></td>
         </tr>
         <tr>
-            <td class="td1"><label for="mem_Phone" class="col-form-label">電話</label></td><td class="td2" ><input type="text" class="form-control-sm" id="mem_Phone"></td>
-            <td class="td3"><label for="mem_Carddue" class="col-form-label">截止日</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Carddue"></td>
+            <td class="td1"><label for="mem_Phone" class="col-form-label">電話</label></td><td class="td2" ><input type="text" class="form-control-sm" id="mem_Phone" name="mem_Phone"></td>
+            <td class="td3"><label for="mem_Carddue" class="col-form-label">截止日</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Carddue" name="mem_Carddue"></td>
         </tr>
         <tr>
             <td colspan="4" class="tdbtn">
