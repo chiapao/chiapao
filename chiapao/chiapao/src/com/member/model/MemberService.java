@@ -29,6 +29,7 @@ public class MemberService {
 		memVO.setMem_Cardnum(mem_Cardnum);
 		memVO.setMem_Carddue(mem_Carddue);
 		memVO.setMem_Bonus(mem_Bonus);
+		memVO.setMem_photo(mem_photo);
 		
 		dao.insert(memVO);	
 			

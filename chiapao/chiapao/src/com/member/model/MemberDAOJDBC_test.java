@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 
-public class MemberDAO_test {
+public class MemberDAOJDBC_test {
 
 	public static void main(String args[]) {
 //新增會員		
