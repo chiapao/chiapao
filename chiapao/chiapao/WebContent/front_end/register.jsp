@@ -107,24 +107,25 @@
 
 <!--your html   start==================================================================================-->
 <div class="container col-5 rounded ">
+	<form method="POST" action="/mem.do">
     <table  id="back">
         <tr>
             <td colspan="4" id="img-td">
                 <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)" name="mem_Photo">
-                <a href="javascript:doClick()">選一張照片吧~</a>
+                <a href="javascript:doClick()" style="color:black">選一張照片吧~</a>
                 <div id="fileList">
                 </div>
             </td>
         </tr>
         <tr>
-            <td class="td1" ><label for="mem_No" class="col-form-label">帳號</label></td><td class="td2" ><input type="text" class="form-control-sm" id="mem_No" name="mem_No"></td><td colspan="2">預設線上訂單收件人資料：(以下非必填)</td>
+            <td class="td1" ><label for="mem_Id" class="col-form-label">帳號</label></td><td class="td2" ><input type="text" class="form-control-sm" id="mem_Id" name="mem_Id"></td><td colspan="2">預設線上訂單收件人資料：(以下非必填)</td>
         </tr>
         <tr>
-            <td class="td1"><label for="mem_Id" class="col-form-label">密碼</label></td><td class="td2" ><input type="password" class="form-control-sm" id="mem_Id" name="mem_Id"></td>
+            <td class="td1"><label for="mem_Pw" class="col-form-label">密碼</label></td><td class="td2" ><input type="password" class="form-control-sm" id="mem_Pw" name="mem_Pw"></td>
             <td class="td3"><label for="mem_Receiver" class="col-form-label">收件人</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Receiver" name="mem_Receiver"></td>
         </tr>
         <tr>
-            <td class="td1"><label for="mem_Name" class="col-form-label">姓名</label></td><td class="td2" ><input type="password" class="form-control-sm" id="mem_Name" name="mem_Name"></td>
+            <td class="td1"><label for="mem_Name" class="col-form-label">姓名</label></td><td class="td2" ><input type="text" class="form-control-sm" id="mem_Name" name="mem_Name"></td>
             <td class="td3"><label for="mem_Repno" class="col-form-label">郵遞區號</label></td><td class="td4"><input type="text" class="form-control-sm" id="mem_Repno" name="mem_Repno"></td>
         </tr>
         <tr>
@@ -160,6 +161,7 @@
             </td>
         </tr>
     </table>
+    </form>
 </div>    
 
 <!--以下勿動-->
