@@ -114,7 +114,7 @@
 		</c:forEach>
 	</ul>
 </c:if>
-	<form method="POST" action="/front_end/mem.do" enctype="multipart/form-data">
+	<form method="POST" action="/mem.do" enctype="multipart/form-data">
     <table  id="back">
         <tr>
             <td colspan="4" id="img-td">
