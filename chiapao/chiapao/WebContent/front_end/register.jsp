@@ -107,7 +107,7 @@
 
 <!--your html   start==================================================================================-->
 <div class="container col-5 rounded ">
-	<form method="POST" action="/mem.do">
+	<form method="POST" action="/mem.do" enctype="multipart/form-data">
     <table  id="back">
         <tr>
             <td colspan="4" id="img-td">
@@ -157,7 +157,9 @@
         <tr>
             <td colspan="4" class="tdbtn">
             <input type="button" class="btn btn-warning btn-sm " align="right" value="取消">
+            <input type="hidden" name="action" value="insert">
             <input type="submit" class="btn btn-warning btn-sm " align="right" value="確認">
+            
             </td>
         </tr>
     </table>
