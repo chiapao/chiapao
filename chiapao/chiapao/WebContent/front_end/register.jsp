@@ -114,11 +114,11 @@
 		</c:forEach>
 	</ul>
 </c:if>
-	<form method="POST" action="/mem.do" enctype="multipart/form-data">
+	<form method="post" action="<%=request.getContextPath()%>/member/MemServlet.do" enctype="multipart/form-data" id="registForm">
     <table  id="back">
         <tr>
             <td colspan="4" id="img-td">
-                <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)" name="mem_Photo">
+                <input type="file" id="fileElem"  accept="image/*" style="display:none"  onchange="handleFiles()" name="mem_Photo">
                 <a href="javascript:doClick()" style="color:black">選一張照片吧~</a>
                 <div id="fileList">
                 </div>
@@ -165,7 +165,7 @@
             <td colspan="4" class="tdbtn">
             <input type="button" class="btn btn-warning btn-sm " align="right" value="取消">
             <input type="hidden" name="action" value="insert">
-            <input type="submit" class="btn btn-warning btn-sm " align="right" value="確認">
+            <input type="submit" class="btn btn-warning btn-sm " align="right" id="send"value="確認">
             
             </td>
         </tr>
