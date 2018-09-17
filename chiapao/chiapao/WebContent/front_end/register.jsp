@@ -21,8 +21,8 @@
         <link rel="stylesheet" href="/chiapao/front_end/css/branchheader.css">
         <link rel="stylesheet" href="/chiapao/front_end/css/branchfooter.css">
         <!--your  CSS ============================================= -->
-        <script src="/chiapao/front_end/js/selectaddress.js"></script>
         <script src="/chiapao/front_end/js/selectmemphoto.js"></script>
+      
 
 
         <link rel="stylesheet" href="/chiapao/front_end/css/register.css">
@@ -30,7 +30,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+		<script src="/chiapao/front_end/js/selectaddress.js"></script>
     <style>
         /* 請複製這一段到你自己的CSS*/
         html {
@@ -106,7 +106,15 @@
 
 <!--your html   start==================================================================================-->
 <div class="container col-5 rounded ">
-	<form method="POST" action="/mem.do" enctype="multipart/form-data">
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red">請修正以下錯誤:</font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:black">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>
+	<form method="POST" action="/front_end/mem.do" enctype="multipart/form-data">
     <table  id="back">
         <tr>
             <td colspan="4" id="img-td">

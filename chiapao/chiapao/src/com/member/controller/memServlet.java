@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.member.model.*;
-@WebServlet("/mem.do")
+@WebServlet("/front_end/mem.do")
 @MultipartConfig
 public class MemServlet extends HttpServlet{
 	
@@ -26,9 +26,9 @@ public class MemServlet extends HttpServlet{
 		String action = req.getParameter("action");
 		
 //***********************getimg***********************************************************		
-		Part part = req.getPart("menu_Photo");
+		Part part = req.getPart("mem_Photo");
 		InputStream in = part.getInputStream();
-		byte[] menu_Photo = new byte[in.available()];
+		byte[] mem_Photo = new byte[in.available()];
 		
 		
 		if("insert".equals(action)){  // 來自register.jsp的請求  
@@ -51,9 +51,7 @@ public class MemServlet extends HttpServlet{
 				String mem_Pw = req.getParameter("mem_Pw").trim();
 				if(mem_Pw == null || mem_Pw.length() == 0) {
 					errorMsgs.add("尚未填寫密碼");
-				} else if(mem_Id.length() >= 20) {
-					errorMsgs.add("餐點類型:長度需小於20個字元 ");
-				}
+				} 
 				//姓名驗證
 				String mem_Name = req.getParameter("mem_Name");
 				String mem_NameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9)]$";
@@ -90,7 +88,7 @@ public class MemServlet extends HttpServlet{
 					errorMsgs.add("電話僅能輸入數字");
 				}
 				//預設收件人驗證
-				String mem_Receiver = req.getParameter(mem_Receiver);
+				String mem_Receiver = req.getParameter("mem_Receiver");
 				String mem_ReceiverReg = "[(\\u4e00-\\u9fa5)(a-zA-Z0-9)]$";
 				if(mem_Receiver.isEmpty()) {				
 				}
@@ -99,45 +97,72 @@ public class MemServlet extends HttpServlet{
 				}
 				
 				//預設收件人電話驗證
-				String mem_Repno = req.getParameter(mem_Repno);
+				String mem_Repno = req.getParameter("mem_Repno");
 				String mem_RepnoReg = "^[0-9]$";
 				if(mem_Repno.isEmpty()) {
 					
-				}else if(!(mem_Repno.trim().matches(mem_RepnoReg))) {
+				}else if(!(mem_Repno.trim().matches("mem_RepnoReg"))) {
 					errorMsgs.add("電話僅能輸入數字");
 				}
+				
+				//預設收件人地址縣市
+				String mem_Recounty = req.getParameter("mem_Recounty");
+				
+				//預設收件人鄉鎮區
+				String mem_Retown = req.getParameter("mem_Retown");
+				
+				//預設收件人地址
+				String mem_Readdr = req.getParameter("mem_Readdr");
+				
+				//預設收件人信用卡
+				String mem_Cardnum = req.getParameter("mem_Cardnum");
+				
+				//預設信用卡截止日
+				String mem_Carddue = req.getParameter("mem_Carddue");
+				
+				
+				MemberVO memVO = new MemberVO();
+				memVO.setMem_Id(mem_Id);
+				memVO.setMem_Name(mem_Name);
+				memVO.setMem_Pw(mem_Pw);
+				memVO.setMem_Bir(mem_Bir);
+				memVO.setMem_Gender(mem_Gender);
+				memVO.setMem_Mail(mem_Mail);
+				memVO.setMem_Phone(mem_Phone);
+				memVO.setMem_Receiver(mem_Receiver);
+				memVO.setMem_Repno(mem_Repno);
+				memVO.setMem_Recounty(mem_Recounty);
+				memVO.setMem_Retown(mem_Retown);
+				memVO.setMem_Readdr(mem_Readdr);
+				memVO.setMem_Cardnum(mem_Cardnum);
+				memVO.setMem_Carddue(mem_Carddue);
+				memVO.setMem_Photo(mem_Photo);
+				
+				
 				
 				
 
 				
-				MenuVO menuVO = new MenuVO();
-				menuVO.setMenu_Id(menu_Id);
-				menuVO.setMenu_Type(menu_Type);
-				menuVO.setMenu_Price(menu_Price);
-				menuVO.setMenu_Intro(menu_Intro);
-				menuVO.setMenu_Photo(menu_Photo);
-				menuVO.setMenu_Status(menu_Status);
-				
 				if(!errorMsgs.isEmpty()) {
-					req.setAttribute("menuVO", menuVO);  // 含有輸入格式錯誤的perntdVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/testimgupload/addMenu.jsp");
+					req.setAttribute("memVO", memVO);  // 含有輸入格式錯誤的memVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/register.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
 				
 				/***************************2.開始新增資料****************************************/
-				MenuService menuSvc = new MenuService();
-				menuVO = menuSvc.addMenu(menu_Id, menu_Type, menu_Price, menu_Intro, menu_Photo, menu_Status);
+				MemberService memSvc = new MemberService();
+				memVO = memSvc.addMem(mem_Id, mem_Pw, mem_Name, mem_Gender, mem_Bir, mem_Mail, mem_Phone, mem_Receiver, mem_Repno, mem_Recounty, mem_Retown, mem_Readdr, mem_Cardnum, mem_Carddue, mem_Photo);
 								
 				/***************************3.新增完成,準備轉交(Send the Success view)************/
-				req.setAttribute("menuVO", menuVO);  // 資料庫新增成功後,正確的的perntdVO物件,存入req
-				RequestDispatcher successView = req.getRequestDispatcher("/front_end/testimgupload/listAllMenu.jsp");
-				successView.forward(req, res);
+//				req.setAttribute("memVO", menuVO);  // 資料庫新增成功後,正確的的perntdVO物件,存入req
+//				RequestDispatcher successView = req.getRequestDispatcher("/front_end/testimgupload/listAllMenu.jsp");
+//				successView.forward(req, res);
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch(Exception e) {
 				errorMsgs.add("資料新增失敗"+e.getMessage());
-				RequestDispatcher failuerView = req.getRequestDispatcher("/front_end/testimgupload/addMenu.jsp");
+				RequestDispatcher failuerView = req.getRequestDispatcher("/front_end/register.jsp");
 				failuerView.forward(req, res);
 			}
 		}
