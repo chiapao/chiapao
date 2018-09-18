@@ -81,7 +81,7 @@ public class MemServlet extends HttpServlet{
 				}else if (!(mem_Phone.trim().matches(mem_PhoneReg))) {
 					errorMsgs.add("電話僅能輸入數字");
 				}
-				//預設收件人驗證
+				//收件人驗證
 				String mem_Receiver = req.getParameter("mem_Receiver");
 				String mem_ReceiverReg = "^[\u4e00-\u9fa5_a-zA-Z0-9]+$";
 				if(mem_Receiver.isEmpty()) {				
@@ -90,7 +90,7 @@ public class MemServlet extends HttpServlet{
 					errorMsgs.add("收件人僅能填寫中文與英文");
 				}
 				
-				//預設收件人電話驗證
+				//收件人電話驗證
 				String mem_Repno = req.getParameter("mem_Repno");
 				String mem_RepnoReg = "^[0-9]+$";
 				if(mem_Repno.isEmpty()) {
@@ -99,19 +99,19 @@ public class MemServlet extends HttpServlet{
 					errorMsgs.add("電話僅能輸入數字");
 				}
 				
-				//預設收件人地址縣市
+				//收件人地址縣市
 				String mem_Recounty = req.getParameter("mem_Recounty");
 				
-				//預設收件人鄉鎮區
+				//收件人鄉鎮區
 				String mem_Retown = req.getParameter("mem_Retown");
 				
-				//預設收件人地址
+				//收件人地址
 				String mem_Readdr = req.getParameter("mem_Readdr");
 				
-				//預設收件人信用卡
+				//收件人信用卡
 				String mem_Cardnum = req.getParameter("mem_Cardnum");
 				
-				//預設信用卡截止日
+				//信用卡截止日
 				String mem_Carddue = req.getParameter("mem_Carddue");
 				
 				//照片處理
