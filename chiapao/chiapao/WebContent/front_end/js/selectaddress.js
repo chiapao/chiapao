@@ -1,8 +1,14 @@
 $(document).ready(function(){
                 var city=['請選擇','基隆市','臺北市','新北市','桃園市','新竹市','新竹縣','苗栗縣','臺中市','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','臺南市','高雄市','屏東縣','臺東縣','花蓮縣','宜蘭縣','澎湖縣','金門縣','連江縣'];
                 var inner="";
-                for(var i=0;i<city.length;i++){
-                    inner=inner+'<option value='+city[i]+'\>'+city[i]+'</option>';
+//                if(memVO.getMem_Recounty() != null){
+//            
+//                	inner=inner+'<option value='+memVO.getMem_Recounty()+' selected \>'+memVO.getMem_Recounty()+'</option>'
+//                	
+//                }else{
+                	for(var i=0;i<city.length;i++){
+                		inner=inner+'<option value='+city[i]+'\>'+city[i]+'</option>';
+//                	}
                 }
                 $("#city-list").html(inner)
                 
@@ -35,9 +41,17 @@ $(document).ready(function(){
                 $("#city-list").change(function(){
                     index=this.selectedIndex;
                     var Sinner="";
+                    
+//                    if(memVO.getMem_Retown() != null){          
+//                    	Sinner=Sinner+'<option value='+memVO.getMem_Retown()+' selected \>'+memVO.getMem_Retown()+'</option>'
+//                    	
+//                    }else{
+                    
                     for(var i=0;i<sectors[index].length;i++){
                         Sinner=Sinner+'<option value='+sectors[index][i]+'\>'+sectors[index][i]+'</option>';
-                    }
+                   		}
+//                    }
+                    
                     $("#sector-list").html(Sinner);
                 });
                 $("#city-list").change();

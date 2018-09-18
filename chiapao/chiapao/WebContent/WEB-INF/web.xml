@@ -23,5 +23,4 @@
 		<servlet-name>MemServlet</servlet-name>
 		<url-pattern>/front_end/member/member.do</url-pattern>
 	</servlet-mapping>
- 
 </web-app>
