@@ -124,9 +124,7 @@
         <tr>
             <td colspan="4" id="img-td">
                 <input type="file" id="fileElem"  accept="image/*" style="display:none"  onchange="handleFiles()" name="mem_Photo">
-                <a href="javascript:doClick()" style="color:black">選一張照片吧~</a>
-                <div id="fileList">
-                </div>
+                <a href="javascript:doClick()" style="color:black"><img class="custom-img" src="/chiapao/front_end/img/no-photo.png" id="img" ></a>
             </td>
         </tr>
         <tr>

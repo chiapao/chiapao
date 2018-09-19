@@ -83,11 +83,14 @@
     }
 
     .custom-img{
-            border-radius: 5rem;
-            margin-top: 15px;
-            margin-bottom: 15px;
-
+        border-radius: 5rem;
+        margin-top: 15px;
+        margin-bottom: 15px;
+		height:200px;
+		width:200px;
+		margin-left:10px;
+		        
     }
-    #img-td{
-    text-align: center;
+    #img-td {
+    text-align:legt ;
     }
