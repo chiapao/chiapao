@@ -10,24 +10,24 @@ public class MemberDAOJDBC_test {
 
 	public static void main(String args[]) {
 //新增會員		
-		MemberVO memVO = new MemberVO();
-		memVO.setMem_Id("ccabba");
-		memVO.setMem_Pw("123456");
-		memVO.setMem_Name("富察傅恆");
-		memVO.setMem_Gender("ms1");
-		memVO.setMem_Bir("1991-03-29");
-		memVO.setMem_Mail("bbbbbb@gmail.com");
-		memVO.setMem_Phone("0923333330");
-		memVO.setMem_Receiver("魏瓔珞");
-		memVO.setMem_Repno("326");
-		memVO.setMem_Recounty("桃園市");
-		memVO.setMem_Retown("楊梅區");
-		memVO.setMem_Cardnum("4312-2222-1111-5555");
-		memVO.setMem_Carddue("07/26");
-		memVO.setMem_Bonus(1000);
-		
-		MemberDAO dao = new MemberDAO();
-		dao.insert(memVO);	
+//		MemberVO memVO = new MemberVO();
+//		memVO.setMem_Id("ccabba");
+//		memVO.setMem_Pw("123456");
+//		memVO.setMem_Name("富察傅恆");
+//		memVO.setMem_Gender("ms1");
+//		memVO.setMem_Bir("1991-03-29");
+//		memVO.setMem_Mail("bbbbbb@gmail.com");
+//		memVO.setMem_Phone("0923333330");
+//		memVO.setMem_Receiver("魏瓔珞");
+//		memVO.setMem_Repno("326");
+//		memVO.setMem_Recounty("桃園市");
+//		memVO.setMem_Retown("楊梅區");
+//		memVO.setMem_Cardnum("4312-2222-1111-5555");
+//		memVO.setMem_Carddue("07/26");
+//		memVO.setMem_Bonus(1000);
+//		
+//		MemberDAO dao = new MemberDAO();
+//		dao.insert(memVO);	
 	
 //修改會員資料
 //		MemberVO memVO = new MemberVO();
@@ -70,6 +70,37 @@ public class MemberDAOJDBC_test {
 //			System.out.println("信箱："+memVO.getMem_Mail());
 //			System.out.println("=============================");		
 //		}
+		
+//		MemberJDBCDAO dao1 = new MemberJDBCDAO();
+//		MemberVO m1=dao1.findByPrimaryKey("M000001");
+//		System.out.println(m1.getMem_Bir());
+//		System.out.println(m1.getMem_Carddue());
+//		System.out.println(m1.getMem_Cardnum());
+//		System.out.println(m1.getMem_Gender());
+//		System.out.println(m1.getMem_Id());
+//		System.out.println(m1.getMem_Mail());
+//		System.out.println(m1.getMem_Name());
+//		System.out.println(m1.getMem_Phone());
+//		System.out.println(m1.getMem_Pw());
+//		System.out.println(m1.getMem_Readdr());
+//		System.out.println(m1.getMem_Receiver());
+		
+		MemberJDBCDAO dao = new MemberJDBCDAO();
+		MemberVO memVO = dao.findById("JJJJJJ44");
+		System.out.println(memVO.getMem_No());
+		System.out.println(memVO.getMem_Bir());
+		System.out.println(memVO.getMem_Carddue());
+		System.out.println(memVO.getMem_Cardnum());
+		System.out.println(memVO.getMem_Gender());		
+		System.out.println(memVO.getMem_Id());
+		System.out.println(memVO.getMem_Mail());
+		System.out.println(memVO.getMem_Name());
+		System.out.println(memVO.getMem_Phone());
+		System.out.println(memVO.getMem_Pw());
+		System.out.println(memVO.getMem_Readdr());
+		System.out.println(memVO.getMem_Receiver());
+	
+	
 	}
 	
 }
