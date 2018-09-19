@@ -49,7 +49,7 @@
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
-            font-family: 'Noto Sans TC', sans-serif;;
+            font-family: 'Noto Sans TC', sans-serif;
             font-weight: 400;
         }  
     </style>

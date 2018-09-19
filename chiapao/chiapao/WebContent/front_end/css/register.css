@@ -5,7 +5,7 @@
         height: 100%;           
     }
     body {
-        background-image: url(img/woodbackground3.png);
+        background-image: url(/chiapao/front_end/img/woodbackground3.png);
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;
