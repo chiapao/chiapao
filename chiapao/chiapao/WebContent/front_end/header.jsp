@@ -50,6 +50,17 @@
 		.nav-link{
 		            font-size: 20px; 
 		        }
+		@font-face {
+            font-family: 'Senty Golden Bell';
+            src: url(/chiapao/front_end/fonts/SentyGoldenBell.woff2) format('woff2'),
+                url(/chiapao/front_end/fonts/SentyGoldenBell.woff) format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body{
+        	font-family: 'Senty Golden Bell';
+        }
 	</style>
 	 <!--Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

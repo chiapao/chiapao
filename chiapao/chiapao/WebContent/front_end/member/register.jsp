@@ -33,18 +33,13 @@
     </head>
     
     <style>
-        /* 請複製這一段到你自己的CSS*/
 
-        /*font */ 
-        @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
         body {
             background-image: url("<%=request.getContextPath()%>/front_end/img/woodbackground3.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
-            background-size: cover;
-            font-family: 'Noto Sans TC', sans-serif;
-            font-weight: 400;
+            background-size: cover;           
         }  
     </style> 
     
