@@ -17,26 +17,9 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<!-- myself CSS -->
 		<link rel="stylesheet" type="text/css" href="/chiapao/front_end/css/login.css">
-		   <style>
-        /* 請複製這一段到你自己的CSS*/
-        html {
-            height: 100%;           
-        }
-        /*font */ 
-        @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
-        body {
-            background-image: url(<%= request.getContextPath() %>/front_end/img/woodbackground3.png);
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            background-size: cover;
-            font-family: 'Noto Sans TC', sans-serif;;
-            font-weight: 400;
-        }  
-    </style>
+		
 </head>
 <body>
-
 
 <div class="container col-3 loginarea">	
 				<c:if test="${not empty errorMsgs}">

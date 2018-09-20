@@ -38,4 +38,17 @@
 .nav-link{
             font-size: 20px; 
         }
-
+        html {
+            height: 100%;           
+        }
+        /*font */ 
+        @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+        body {
+            background-image: url(/CA103G4/front_end/img/woodbackground3.png);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            font-family: 'Noto Sans TC', sans-serif;;
+            font-weight: 400;
+        }  

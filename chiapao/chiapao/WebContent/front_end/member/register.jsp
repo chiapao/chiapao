@@ -20,31 +20,25 @@
 		<title>Register</title> 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <!-- linearicons CSS -->
-        <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-        <!-- h&f CSS -->
-        <link rel="stylesheet" href="<%= request.getContextPath() %>/front_end/css/branchheader.css">
-        <link rel="stylesheet" href="<%= request.getContextPath() %>/front_end/css/branchfooter.css">
         <!--your  CSS ============================================= -->
-        <script src="<%= request.getContextPath() %>/front_end/js/selectmemphoto.js"></script>
-        <script src="<%= request.getContextPath() %>/front_end/js/selectaddress.js"></script>
+       
 
-
-        <link rel="stylesheet" href="<%= request.getContextPath() %>/front_end/css/register.css">
        <!--Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		
+		<script src="<%=request.getContextPath()%>/front_end/js/selectaddress.js"></script>
+		<script src="<%=request.getContextPath()%>/front_end/js/selectmemphoto.js"></script>
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/front_end/css/register.css">
+    </head>
+    
     <style>
         /* 請複製這一段到你自己的CSS*/
-        html {
-            height: 100%;           
-        }
+
         /*font */ 
         @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
         body {
-            background-image: url(<%= request.getContextPath() %>/front_end/img/woodbackground3.png);
+            background-image: url("<%=request.getContextPath()%>/front_end/img/woodbackground3.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
@@ -52,11 +46,10 @@
             font-family: 'Noto Sans TC', sans-serif;
             font-weight: 400;
         }  
-    </style>
-    </head>
-    <body>
+    </style> 
     
-<jsp:include page="/front_end/header.jsp" flush="true"></jsp:include>
+ <body>
+	<jsp:include page="/front_end/header.jsp"></jsp:include>
 
 <!--your html   start==================================================================================-->
 <div class="container col-5 rounded ">
@@ -96,7 +89,6 @@
                 <label  for="mem_Gender1">男</label>
                 <input  type="radio" name="mem_Gender" id="mem_Gender2" value="ms2" ${(memVO.mem_Gender == 'ms2' ) ?'checked':'' } >
                 <label  for="mem_Gender2">女</label>
-  
             </td>
             <td class="td3">鄉鎮區市</td>
             <td class="td4">
@@ -130,7 +122,7 @@
 
 <!--以下勿動-->
     <!-- Footer -->
-<jsp:include page="/front_end/footer.jsp" flush="true"></jsp:include>
+<jsp:include page="/front_end/footer.jsp"></jsp:include>
 	 <!-- Footer -->		
 		</body>
 	</html>
