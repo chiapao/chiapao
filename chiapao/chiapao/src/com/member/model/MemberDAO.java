@@ -343,8 +343,8 @@ public class MemberDAO implements MemberDAO_interface{
 		MemberVO memVO = null;
 		try {
 			con = ds.getConnection();
+			System.out.println("連線成功");
 			pstmt = con.prepareStatement(GET_ONE_BY_ID);
-			
 			pstmt.setString(1, mem_Id);
 			ResultSet rs= pstmt.executeQuery();
 			
@@ -379,7 +379,7 @@ public class MemberDAO implements MemberDAO_interface{
 		}
 		
 		
-		return null;
+		return memVO;
 	}
 	
 	

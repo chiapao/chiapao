@@ -24,7 +24,9 @@ public class MemServlet extends HttpServlet{
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-				
+		
+		
+		//註冊區塊-chiapao
 		if("insert".equals(action)){  // 來自register.jsp的請求  
 			List<String> errorMsgs = new LinkedList<>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -181,8 +183,77 @@ public class MemServlet extends HttpServlet{
 			}
 		}
 		
+		
+		//登入區塊-chiapao
+		
+		if("loginhandler".equals(action)){  // 來自register.jsp的請求  
+			List<String> errorMsgs = new LinkedList<>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				
+				//帳號驗證				
+				String mem_Id = req.getParameter("mem_Id").trim();
+				String mem_Pw = req.getParameter("mem_Id").trim();
+				MemberVO memVO = null;
+				MemberService memSvc = new MemberService();
+				memVO = memSvc.getOneMem_Id(mem_Id);
+				
+				if(mem_Id.trim().isEmpty() || mem_Pw.trim().isEmpty()) {
+					errorMsgs.add("尚未輸入帳號或密碼");
+				}else if(!(mem_Id.trim().isEmpty())|| (mem_Pw.trim().isEmpty())){					
+					if(memVO.getMem_Id() != mem_Id) {
+						errorMsgs.add("帳號錯誤");
+					}else if(memVO.getMem_Id()!=mem_Pw) {
+						errorMsgs.add("密碼錯誤");
+					}	
+				}
+					
+				
+				if(!errorMsgs.isEmpty()) {
+					req.setAttribute("memVO", memVO);  // 含有輸入格式錯誤的memVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					failureView.forward(req, res);
+					return; //程式中斷
+				}
+				
+				/***************************2.帳號密碼皆正確****************************************/
+				System.out.println("帳密都沒錯");
+				
+				HttpSession session = req.getSession();
+				session.setAttribute("memVO", memVO);
+				
+					try {
+						String location = (String) session.getAttribute("location");
+							if(location != null) {
+								session.removeAttribute("location");
+								res.sendRedirect(location);            
+						        return;//程式中斷
+							}
+						
+					}catch(Exception ignored) {}
+				
+				res.sendRedirect(req.getContextPath()+"/member/loginSusess.jsp");
+								
+				/***************************3.新增完成,準備轉交(Send the Success view)************/
+//				req.setAttribute("memVO", menuVO);  // 資料庫新增成功後,正確的的perntdVO物件,存入req
+//				RequestDispatcher successView = req.getRequestDispatcher("/front_end/testimgupload/listAllMenu.jsp");
+//				successView.forward(req, res);
+				
+				
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch(Exception e) {
+				errorMsgs.add("SQL錯誤"+e.getMessage());
+				RequestDispatcher failuerView = req.getRequestDispatcher(req.getContextPath()+"/member/loginSusess.jsp");
+				failuerView.forward(req, res);
+			}
+		
+		
+		
+		}
 	}
-	
 	
 	
 

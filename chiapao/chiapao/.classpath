@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="C:/MyLib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="C:/MyLib/jstl.jar"/>
 	<classpathentry kind="lib" path="C:/MyLib/standard.jar"/>
+	<classpathentry kind="lib" path="C:/MyLib/commons-pool2-2.5.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

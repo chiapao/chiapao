@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 
-public class MemberDAOJDBC_test {
+public class MemberDAO_test {
 
 	public static void main(String args[]) {
 //新增會員		
@@ -85,8 +85,27 @@ public class MemberDAOJDBC_test {
 //		System.out.println(m1.getMem_Readdr());
 //		System.out.println(m1.getMem_Receiver());
 		
-		MemberJDBCDAO dao = new MemberJDBCDAO();
+//用帳號查詢會員JDBC版本
+//		MemberJDBCDAO dao = new MemberJDBCDAO();
+//		MemberVO memVO = dao.findById("JJJJJJ44");
+//		System.out.println(memVO.getMem_No());
+//		System.out.println(memVO.getMem_Bir());
+//		System.out.println(memVO.getMem_Carddue());
+//		System.out.println(memVO.getMem_Cardnum());
+//		System.out.println(memVO.getMem_Gender());		
+//		System.out.println(memVO.getMem_Id());
+//		System.out.println(memVO.getMem_Mail());
+//		System.out.println(memVO.getMem_Name());
+//		System.out.println(memVO.getMem_Phone());
+//		System.out.println(memVO.getMem_Pw());
+//		System.out.println(memVO.getMem_Readdr());
+//		System.out.println(memVO.getMem_Receiver());
+
+//JNDI版本帳號查詢	
+		MemberDAO dao = new MemberDAO();
+		
 		MemberVO memVO = dao.findById("JJJJJJ44");
+		
 		System.out.println(memVO.getMem_No());
 		System.out.println(memVO.getMem_Bir());
 		System.out.println(memVO.getMem_Carddue());
@@ -98,8 +117,8 @@ public class MemberDAOJDBC_test {
 		System.out.println(memVO.getMem_Phone());
 		System.out.println(memVO.getMem_Pw());
 		System.out.println(memVO.getMem_Readdr());
-		System.out.println(memVO.getMem_Receiver());
-	
+		System.out.println(memVO.getMem_Receiver());		
+		
 	
 	}
 	
