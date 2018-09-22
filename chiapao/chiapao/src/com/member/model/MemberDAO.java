@@ -41,6 +41,7 @@ public class MemberDAO implements MemberDAO_interface{
 			"SELECT * FROM MEMBER";
 	public static final String GET_ONE_MEMBER="SELECT * FROM MEMBER WHERE MEM_NO=?";
 	public static final String GET_ONE_BY_ID="SELECT * FROM MEMBER WHERE MEM_ID=?";
+	public static final String COMPARE_ID = "SELECT MEM_ID FROM MEMBER WHERE MEM_ID LIKE ?";
 	
 
 
@@ -380,6 +381,12 @@ public class MemberDAO implements MemberDAO_interface{
 		
 		
 		return memVO;
+	}
+
+	@Override
+	public String compareMemId(String mem_Id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

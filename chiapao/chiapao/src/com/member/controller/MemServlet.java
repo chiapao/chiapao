@@ -195,17 +195,24 @@ public class MemServlet extends HttpServlet{
 				
 				//帳號驗證				
 				String mem_Id = req.getParameter("mem_Id").trim();
-				String mem_Pw = req.getParameter("mem_Id").trim();
+				String mem_Pw = req.getParameter("mem_Pw").trim();
+				
+				System.out.println("mem_Id="+mem_Id);
+				System.out.println("mem_Pw="+mem_Pw);
+				
+				MemberService memSvc = new MemberService();
+				memSvc.getOneMem_Id(mem_Id);
+				
 				MemberVO memVO = null;
 				MemberService memSvc = new MemberService();
 				memVO = memSvc.getOneMem_Id(mem_Id);
 				
 				if(mem_Id.trim().isEmpty() || mem_Pw.trim().isEmpty()) {
 					errorMsgs.add("尚未輸入帳號或密碼");
-				}else if(!(mem_Id.trim().isEmpty())|| (mem_Pw.trim().isEmpty())){					
+				}else{					
 					if(memVO.getMem_Id() != mem_Id) {
 						errorMsgs.add("帳號錯誤");
-					}else if(memVO.getMem_Id()!=mem_Pw) {
+					}else if(memVO.getMem_Pw()!=mem_Pw) {
 						errorMsgs.add("密碼錯誤");
 					}	
 				}

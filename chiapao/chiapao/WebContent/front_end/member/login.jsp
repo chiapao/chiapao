@@ -16,12 +16,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<!-- myself CSS -->
-		<link rel="stylesheet" type="text/css" href="/chiapao/front_end/css/login.css">
-		
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front_end/member/css/login.css">	
 </head>
 <body>
+<!-- header勿動 -->
+<jsp:include page="/front_end/header.jsp"></jsp:include>
 
+<!--以下為login區塊-->
 <div class="container col-3 loginarea">	
+
 				<c:if test="${not empty errorMsgs}">
 					<font style="color:red;" >請修正以下錯誤:</font>
 					<ul>
@@ -30,33 +33,35 @@
 						</c:forEach>
 					</ul>
 				</c:if>
-		<form action="member.do" method="post" name="loginhandler">	
+				
+		<form action="member.do" method="post" >	
             <div class="tablebg" >
 				<table >					
 					<tr class="tr1">
 						<td class="td1">帳號</td> 
 						<td class="td2">
-							<input class="form-control-sm custom-input" type=text name="account" size=15 name="mem_Id">
+							<input class="form-control-sm custom-input" type=text size=15 name="mem_Id">
 						</td>
 					</tr>
 					<tr>
 						<td class="td1">密碼</td> 
 						<td class="td2">
-							<input class="form-control-sm custom-input" type=password name="password"  size=15 name="mem_Pw"></td></tr>
+							<input class="form-control-sm custom-input" type=password  size=15 name="mem_Pw"></td></tr>
 					<tr >
 						<td align="left">
                             <a href="<%= request.getContextPath() %>/front_end/member/register.jsp" class="custom-btn btn btn-warning btn-sm"  style="margin-left: 10px;" >註冊</a>
                         </td>
                         <td align="right">
 							<input class="custom-btn btn btn-warning btn-sm" type="button" value="取消">
-                            <input class="custom-btn btn btn-warning btn-sm" type="submit" value="確認"> 
+							<input type="hidden" name="action" value="loginhandler">
+                            <input class="custom-btn btn btn-warning btn-sm" type="submit" value="確認" > 
 						</td>
-					</tr>
-					
+					</tr>					
 				</table>
             </div>
 		</form>
 </div>
-
+<!-- footer勿動 -->
+<jsp:include page="/front_end/footer.jsp"></jsp:include>
 </body>
 </html>

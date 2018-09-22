@@ -27,22 +27,12 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		<script src="<%=request.getContextPath()%>/front_end/js/selectaddress.js"></script>
-		<script src="<%=request.getContextPath()%>/front_end/js/selectmemphoto.js"></script>
-		<link rel="stylesheet" href="<%=request.getContextPath()%>/front_end/css/register.css">
+		<script src="<%=request.getContextPath()%>/front_end/member/js/selectaddress.js"></script>
+		<script src="<%=request.getContextPath()%>/front_end/member/js/selectmemphoto.js"></script>
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/front_end/member/css/register.css">
     </head>
     
-    <style>
 
-        body {
-            background-image: url("<%=request.getContextPath()%>/front_end/img/woodbackground3.png");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            background-size: cover;           
-        }  
-    </style> 
-    
  <body>
 	<jsp:include page="/front_end/header.jsp"></jsp:include>
 
@@ -53,7 +43,7 @@
         <tr>
             <td colspan="2" id="img-td">
                 <input type="file" id="fileElem"  accept="image/*" style="display:none"  onchange="handleFiles()" name="mem_Photo">
-                <a href="javascript:doClick()" style="color:black"><img class="custom-img" src="<%= request.getContextPath() %>/front_end/img/no-photo.png" id="img" ></a>
+                <a href="javascript:doClick()" style="color:black"><img class="custom-img" src="<%= request.getContextPath() %>/front_end/member/img/no-photo.png" id="img" ></a>
             </td>
             <td colspan="2" align="left">
 				<c:if test="${not empty errorMsgs}">

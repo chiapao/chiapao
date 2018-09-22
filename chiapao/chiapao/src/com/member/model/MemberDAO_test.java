@@ -101,24 +101,26 @@ public class MemberDAO_test {
 //		System.out.println(memVO.getMem_Readdr());
 //		System.out.println(memVO.getMem_Receiver());
 
-//JNDI版本帳號查詢	
-		MemberDAO dao = new MemberDAO();
+//JNDI版本帳號查詢
 		
-		MemberVO memVO = dao.findById("JJJJJJ44");
-		
-		System.out.println(memVO.getMem_No());
-		System.out.println(memVO.getMem_Bir());
-		System.out.println(memVO.getMem_Carddue());
-		System.out.println(memVO.getMem_Cardnum());
-		System.out.println(memVO.getMem_Gender());		
-		System.out.println(memVO.getMem_Id());
-		System.out.println(memVO.getMem_Mail());
-		System.out.println(memVO.getMem_Name());
-		System.out.println(memVO.getMem_Phone());
-		System.out.println(memVO.getMem_Pw());
-		System.out.println(memVO.getMem_Readdr());
-		System.out.println(memVO.getMem_Receiver());		
-		
+//		MemberVO memVO = null;
+//		MemberService memSvc = new MemberService();
+//		memVO = memSvc.getOneMem_Id("ABOW");
+//	 
+//		
+//		System.out.println(memVO.getMem_No());
+//		System.out.println(memVO.getMem_Bir());
+//		System.out.println(memVO.getMem_Carddue());
+//		System.out.println(memVO.getMem_Cardnum());
+//		System.out.println(memVO.getMem_Gender());		
+//		System.out.println(memVO.getMem_Id());
+//		System.out.println(memVO.getMem_Mail());
+//		System.out.println(memVO.getMem_Name());
+//		System.out.println(memVO.getMem_Phone());
+//		System.out.println(memVO.getMem_Pw());
+//		System.out.println(memVO.getMem_Readdr());
+//		System.out.println(memVO.getMem_Receiver());		
+//		
 	
 	}
 	
