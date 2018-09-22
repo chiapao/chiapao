@@ -199,22 +199,20 @@ public class MemServlet extends HttpServlet{
 				
 				System.out.println("mem_Id="+mem_Id);
 				System.out.println("mem_Pw="+mem_Pw);
-				
+				MemberVO memVO;
 				MemberService memSvc = new MemberService();
-				memSvc.getOneMem_Id(mem_Id);
+				memVO = memSvc.getOneMem_Id(mem_Id); //找輸入帳號的資料，若無此帳號memVO為空值;
 				
-				MemberVO memVO = null;
-				MemberService memSvc = new MemberService();
-				memVO = memSvc.getOneMem_Id(mem_Id);
-				
+								
 				if(mem_Id.trim().isEmpty() || mem_Pw.trim().isEmpty()) {
 					errorMsgs.add("尚未輸入帳號或密碼");
-				}else{					
-					if(memVO.getMem_Id() != mem_Id) {
-						errorMsgs.add("帳號錯誤");
-					}else if(memVO.getMem_Pw()!=mem_Pw) {
+				}else if(memVO != null){
+					System.out.println(memVO.getMem_Pw());
+					if(memVO.getMem_Pw().equals(mem_Id)) {
 						errorMsgs.add("密碼錯誤");
-					}	
+					}
+				}else {
+					errorMsgs.add("無此帳號");
 				}
 					
 				
@@ -241,7 +239,7 @@ public class MemServlet extends HttpServlet{
 						
 					}catch(Exception ignored) {}
 				
-				res.sendRedirect(req.getContextPath()+"/member/loginSusess.jsp");
+				res.sendRedirect(req.getContextPath()+"/front_end/member/loginSusess.jsp");
 								
 				/***************************3.新增完成,準備轉交(Send the Success view)************/
 //				req.setAttribute("memVO", menuVO);  // 資料庫新增成功後,正確的的perntdVO物件,存入req

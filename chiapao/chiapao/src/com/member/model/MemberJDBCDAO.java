@@ -332,7 +332,8 @@ public class MemberJDBCDAO implements MemberDAO_interface{
 
 				memVO = new MemberVO();
 				
-				memVO.setMem_Id(rs.getString("mem_No"));
+				memVO.setMem_No(rs.getString("mem_No"));
+				memVO.setMem_Id(rs.getString("mem_Id"));
 				memVO.setMem_Pw(rs.getString("mem_Pw"));
 				memVO.setMem_Name(rs.getString("mem_Name"));
 				memVO.setMem_Gender(rs.getString("mem_Gender"));
@@ -356,41 +357,40 @@ public class MemberJDBCDAO implements MemberDAO_interface{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		
+			memVO = null;
+						
+		}	
 		return memVO;
 	}
 
-	@Override
-	public String compareMemId(String mem_Id) {
-		// TODO Auto-generated method stub
-		
-		Connection con = null;
-		PreparedStatement pstmt =null;
-		
-		try {
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
-			System.out.println("連線成功");
-			pstmt = con.prepareStatement(COMPARE_ID);
-			
-			ResultSet rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				rs.getString("mem_id");
-			}
-			
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
-		return mem_Id;
-	}
+//	@Override
+//	public MemberVO compareMemId(String mem_Id) {
+//		// TODO Auto-generated method stub
+//		
+//		Connection con = null;
+//		PreparedStatement pstmt =null;
+//		MemberVO memVO = null;
+//		
+//		try {
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			System.out.println("連線成功");
+//			pstmt = con.prepareStatement(COMPARE_ID);
+//			
+//			ResultSet rs = pstmt.executeQuery();
+//			
+//			while(rs.next()) {
+//				memVO = new MemberVO();
+//				memVO.setMem_Id(rs.getString("mem_Id"));
+//			}
+//						
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//			
+//		return memVO;
+//	}
 	
 	
 }

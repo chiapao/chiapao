@@ -65,7 +65,7 @@ public class MemberService {
 		return memVO;
 	}
 
-	public MemberVO memVO(String mem_Id, String mem_Status) {
+	public MemberVO memChangeStatus(String mem_Id, String mem_Status) {
 
 		MemberVO memVO = new MemberVO();
 

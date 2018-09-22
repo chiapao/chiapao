@@ -122,6 +122,13 @@ public class MemberDAO_test {
 //		System.out.println(memVO.getMem_Receiver());		
 //		
 	
+//比對帳號
+		
+		MemberJDBCDAO dao = new MemberJDBCDAO();
+		MemberVO memVO =dao.findById("AB");
+		
+		System.out.println(memVO);
+		
 	}
 	
 }
