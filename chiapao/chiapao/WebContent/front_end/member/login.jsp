@@ -23,7 +23,7 @@
 <jsp:include page="/front_end/header.jsp"></jsp:include>
 
 <!--以下為login區塊-->
-<div class="container col-3 loginarea">	
+<div class="container col-3 loginarea" style="padding-bottom:40px;">	
 
 				<c:if test="${not empty errorMsgs}">
 					<font style="color:red;" >請修正以下錯誤:</font>
@@ -49,7 +49,7 @@
 							<input class="form-control-sm custom-input" type=password  size=15 name="mem_Pw"></td></tr>
 					<tr >
 						<td align="left">
-                            <a href="<%= request.getContextPath() %>/front_end/member/register.jsp" class="custom-btn btn btn-warning btn-sm"  style="margin-left: 10px;" >註冊</a>
+                            <a href="<%= request.getContextPath() %>/front_end/member/register.jsp" class="custom-btn btn btn-warning btn-sm"  style="margin-left: 30px;" >註冊</a>
                         </td>
                         <td align="right">
 							<input class="custom-btn btn btn-warning btn-sm" type="button" value="取消">

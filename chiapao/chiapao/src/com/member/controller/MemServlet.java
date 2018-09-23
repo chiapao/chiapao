@@ -16,6 +16,20 @@ import com.member.model.*;
 public class MemServlet extends HttpServlet{
 	
 	public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException{
+		req.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
+				
+		//登出區塊
+		String logout = req.getParameter("logout");
+		if("out".equals(logout)) {
+			try {
+				session.invalidate();
+				System.out.println("登出囉");
+				res.sendRedirect(req.getContextPath()+"/front_end/header.jsp");
+			}catch(Exception e) {
+				
+			}
+		}
 		
 		doPost(req,res);
 	}
@@ -239,7 +253,7 @@ public class MemServlet extends HttpServlet{
 						
 					}catch(Exception ignored) {}
 				
-				res.sendRedirect(req.getContextPath()+"/front_end/member/loginSusess.jsp");
+				res.sendRedirect(req.getContextPath()+"/front_end/header.jsp");
 								
 				/***************************3.新增完成,準備轉交(Send the Success view)************/
 //				req.setAttribute("memVO", menuVO);  // 資料庫新增成功後,正確的的perntdVO物件,存入req
