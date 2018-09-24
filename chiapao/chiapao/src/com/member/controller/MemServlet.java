@@ -61,7 +61,14 @@ public class MemServlet extends HttpServlet{
 					while ((len = in.read(buf)) != -1) {
 						out.write(buf, 0, len);
 					}
-				in.close();
+					in.close();
+				}else {
+					//res.sendError(HttpServletResponse.SC_NOT_FOUND);
+					InputStream in = getServletContext().getResourceAsStream("/front_end/img/no-photo.png");
+					byte[] buf = new byte[in.available()];
+					in.read(buf);
+					out.write(buf);
+					in.close();
 				}
 					
 			}catch(Exception e){
