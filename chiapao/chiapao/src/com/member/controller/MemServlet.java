@@ -75,7 +75,7 @@ public class MemServlet extends HttpServlet{
 				System.out.println(e);
 			}			
 						
-		doPost(req,res);
+//		doPost(req,res);
 	}
 
 	
