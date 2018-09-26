@@ -33,7 +33,7 @@ public class MemServlet extends HttpServlet{
 				
 		//登出區塊
 		String logout = req.getParameter("logout");
-		System.out.println(logout);
+		System.out.println("doget的logout："+logout);
 		if("out".equals(logout)) {
 			try {
 				session.invalidate();
@@ -51,13 +51,13 @@ public class MemServlet extends HttpServlet{
 				Context ctx = new javax.naming.InitialContext();
 				DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
 				con = ds.getConnection();
-				String mem_Id = req.getParameter("mem_Id").trim();
-		System.out.println(mem_Id);
+				String mem_No = req.getParameter("mem_No").trim();
+		System.out.println(mem_No);
 		
 				Statement stmt = con.createStatement();
 	
 				ResultSet rs = stmt.executeQuery(
-					"SELECT MEM_PHOTO FROM MEMBER WHERE MEM_ID='"+mem_Id+"'");
+					"SELECT MEM_PHOTO FROM MEMBER WHERE MEM_NO='"+mem_No+"'");
 				if (rs.next()) {
 					BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("MEM_PHOTO"));
 					byte[] buf = new byte[4 * 1024]; // 4K buffer
@@ -77,7 +77,7 @@ public class MemServlet extends HttpServlet{
 					
 			}catch(Exception e){
 				System.out.println(e);
-				InputStream in = getServletContext().getResourceAsStream("/front_end/img/no-photo.png");
+				InputStream in = getServletContext().getResourceAsStream("/front_end/img/LOGO-04.png");
 				byte[] b = new byte[in.available()]; 
 				in.read(b);
 				out.write(b);
@@ -102,14 +102,13 @@ public class MemServlet extends HttpServlet{
 			try {
 				/***************************1.接收請求參數****************************************/
 				
-				//帳號驗證
+				//註冊開始
 				String mem_Id = req.getParameter("mem_Id").trim();
 				String mem_IdReg = "^[(a-zA-Z0-9_)]{2,50}$";
 				
 				MemberService memSvc = new MemberService();
 				MemberVO checkId = memSvc.getOneMem_Id(mem_Id);
-				
-				//帳號是否重複
+				//帳號是否重複檢查
 				if(checkId !=null) {
 					errorMsgs.add("帳號重複");
 				}
@@ -258,21 +257,34 @@ public class MemServlet extends HttpServlet{
 				
 				if("m0".equals(status)) {
 					MailService ms = new MailService();
+					//取得驗證碼
 					String authCode = MemberRedis.returnAuthCode();
+					
 					String to = memVO.getMem_Mail();
 					String subject = "竹風堂認證信";
 					String messageText = "HI！" +memVO.getMem_Name()+ "\n驗證碼："+authCode  ;
 					ms.sendMail(to, subject, messageText);		
+					
+					
 					Jedis jedis = new Jedis("localhost", 6379);
 					jedis.auth("123456");
+					
 					jedis.set(memVO.getMem_Id(), authCode);
 					jedis.expire(memVO.getMem_Id(), 180);
 					
-				}		
+					
+				/***************************4.信已寄出,準備轉交檢查頁面(Send the check view)************/
+					jedis.close();
+					req.setAttribute("memVO", memVO);  // 含有輸入格式錯誤的memVO物件,也存入req
+					RequestDispatcher checkAuth = req.getRequestDispatcher("/front_end/member/checkstatus.jsp");
+					checkAuth.forward(req, res);
+					return;
+				}
+	
 				
 				/***************************4.新增完成,準備轉交(Send the Success view)************/
 				
-				res.sendRedirect(req.getContextPath()+"/front_end/member/checkstatus.jsp");
+//				res.sendRedirect(req.getContextPath()+"/front_end/member/checkstatus.jsp");
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch(Exception e) {
@@ -283,13 +295,42 @@ public class MemServlet extends HttpServlet{
 		}
 		
 		//更改驗證狀態
-//		if("checkstatus".equals(action)) {
-//			try {
-//			
-//
-//		}catch(Exception e){}
-//		
-//		}
+		if("checkstatus".equals(action)) {
+			List<String> errorMsgs = new LinkedList<>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+			String autoCode = req.getParameter("authCode");
+			
+			Jedis jedis = new Jedis("localhost", 6379);
+			
+			jedis.auth("123456");
+			
+			MemberVO memVO = (MemberVO)req.getAttribute("memVO");	
+			
+			String jedisAuthCode = jedis.get(memVO.getMem_Id());
+			
+			if(jedisAuthCode == null) {
+				
+				errorMsgs.add("驗證已失效");
+				
+			}else if(autoCode.equals(jedisAuthCode)) {
+				MemberService ms = new MemberService();
+				ms.memChangeStatus(memVO.getMem_Id(), "m1");
+				
+			}else {
+				errorMsgs.add("輸入錯誤");
+				}
+			
+			jedis.close();
+			
+			}catch(Exception e){
+				errorMsgs.add("驗證失敗"+e.getMessage());
+				RequestDispatcher failuerView = req.getRequestDispatcher("/front_end/member/checkstatus.jsp");
+				failuerView.forward(req, res);
+				
+			}
+		
+		}
 		
 		
 		//登入區塊-chiapao
@@ -322,19 +363,12 @@ public class MemServlet extends HttpServlet{
 				}else {
 					errorMsgs.add("無此帳號");
 				}
-//				//檢查狀態	
+				//檢查狀態	
 //				String status = memVO.getMem_Status();				
-//				System.out.println(status);
-//				System.out.println("m0".equals(status));
-//				
+//			
 //				if("m0".equals(status)) {
 //					
-//					MailService ms = new MailService();
-//					String authCode = MemberRedis.returnAuthCode();
-//					String to = memVO.getMem_Mail();
-//					String subject = "竹風堂認證信";
-//					String messageText = "HI！" +memVO.getMem_Name()+ "\n 驗證碼："+authCode  ;
-//					ms.sendMail(to, subject, messageText);	
+//					errorMsgs.add("帳號尚未完成驗證");
 //
 //				}
 				
