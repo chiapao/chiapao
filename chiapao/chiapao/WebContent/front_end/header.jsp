@@ -62,9 +62,10 @@ body {
 }
 </style>
 <!--Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js "></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
+<!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
+<!-- 	crossorigin="anonymous"></script> -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -73,13 +74,6 @@ body {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
-
-<!-- <script type="text/javascript"> -->
-	
-
-	
-<!-- </script> -->
-		
 </head>
 <body>
 	<section>
@@ -122,15 +116,12 @@ body {
 									class="lnr lnr-cart"></span></a></li>
 							<li class="nav-link imgicon"><a href="gallery.html"></a><span
 								class="lnr lnr-alarm"></span></li>
-<!-- 							<span -->
-<!-- 									class="lnr lnr-user"></span>	 -->
-								
 							<li class="nav-item dropdown imgicon">
 							
 							<!-- 無登入狀態 點選人頭示意圖將導入Login.jsp -->
 
 								<a
-								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/chiapao/front_end/member/login.jsp' : '#'}"
+								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/CA103G4/front_end/member/login.jsp' : '#'}"
 								id="navbarDropdownMenuLink" role="button" ${(memVO.mem_Name == null )? '' : 'data-toggle=\"dropdown\"'}
 								aria-haspopup="true" aria-expanded="false" style="padding-top:${(memVO.mem_Name == null )? '': '3px'} "> 
 									${(memVO.mem_Name == null )? 'Log in':memVO.mem_Name}
@@ -146,8 +137,9 @@ body {
 								<div class="dropdown-menu"
 									aria-labelledby="navbarDropdownMenuLink" style="display: ${(memVO.mem_Name == null )? 'none': ''} ">
 							<!-- 以下可以自己新增相關會員附屬功能 -->
-									<a class="dropdown-item" href="#">儲值管理</a> 
+									<a class="dropdown-item" href="#">儲值紀錄</a> 
 									<a class="dropdown-item" href="#">訂單查詢</a> 
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/post/listPostByMember.jsp">我的貼文</a>
 									<a class="dropdown-item" href="#">修改會員</a>
 									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/member/member.do?logout=out" >登出</a>
 								</div>
@@ -160,11 +152,7 @@ body {
 			</div>
 		</header>
 
-		<!--background image-->
-		<img
-			src="<%= request.getContextPath() %>/front_end/img/top-banner1.jpg"
-			width="100%" height="" alt="">
+	
 	</section>
 </body>
-
 </html>

@@ -34,8 +34,10 @@ session.getAttribute("mem_Name");
     
 
  <body>
-<%-- 	<jsp:include page="/front_end/header.jsp"></jsp:include> --%>
 
+		<img
+			src="<%= request.getContextPath() %>/front_end/img/top-banner1.jpg"
+			width="100%" height="" alt="">
 <!--your html   start==================================================================================-->
 <div class="container rounded col-3" style="padding-bottom:170px;" >
 	<form method="post" action="member.do" enctype="multipart/form-data" >
