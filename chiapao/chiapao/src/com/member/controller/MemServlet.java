@@ -108,6 +108,7 @@ public class MemServlet extends HttpServlet{
 				
 				MemberService memSvc = new MemberService();
 				MemberVO checkId = memSvc.getOneMem_Id(mem_Id);
+				
 				//帳號是否重複檢查
 				if(checkId !=null) {
 					errorMsgs.add("帳號重複");
@@ -203,35 +204,35 @@ public class MemServlet extends HttpServlet{
 				
 				MemberVO memVO = new MemberVO();
 				memVO.setMem_Id(mem_Id);
-				System.out.println("memID="+memVO.getMem_Id());
+				//System.out.println("memID="+memVO.getMem_Id());
 				memVO.setMem_Name(mem_Name);
-				System.out.println("memName="+memVO.getMem_Name());
+				//System.out.println("memName="+memVO.getMem_Name());
 				memVO.setMem_Pw(mem_Pw);
-				System.out.println("memPw="+memVO.getMem_Pw());
+				//System.out.println("memPw="+memVO.getMem_Pw());
 				memVO.setMem_Bir(mem_Bir);
-				System.out.println("memBir="+memVO.getMem_Bir());
+				//System.out.println("memBir="+memVO.getMem_Bir());
 				memVO.setMem_Gender(mem_Gender);
-				System.out.println("memGender="+memVO.getMem_Gender());
+				//System.out.println("memGender="+memVO.getMem_Gender());
 				memVO.setMem_Mail(mem_Mail);
-				System.out.println("memMail="+memVO.getMem_Mail());
+				//System.out.println("memMail="+memVO.getMem_Mail());
 				memVO.setMem_Phone(mem_Phone);
-				System.out.println("memPhone="+memVO.getMem_Phone());
+				//System.out.println("memPhone="+memVO.getMem_Phone());
 				memVO.setMem_Receiver(mem_Receiver);
-				System.out.println("memReceiver="+memVO.getMem_Receiver());
+				//System.out.println("memReceiver="+memVO.getMem_Receiver());
 				memVO.setMem_Repno(mem_Repno);
-				System.out.println("memRepno="+memVO.getMem_Repno());
+				//System.out.println("memRepno="+memVO.getMem_Repno());
 				memVO.setMem_Recounty(mem_Recounty);
-				System.out.println("memRecounty="+memVO.getMem_Recounty());
+				//System.out.println("memRecounty="+memVO.getMem_Recounty());
 				memVO.setMem_Retown(mem_Retown);
-				System.out.println("memRetown="+memVO.getMem_Retown());
+				//System.out.println("memRetown="+memVO.getMem_Retown());
 				memVO.setMem_Readdr(mem_Readdr);
-				System.out.println("memRaddr="+memVO.getMem_Readdr());
+				//System.out.println("memRaddr="+memVO.getMem_Readdr());
 				memVO.setMem_Cardnum(mem_Cardnum);
-				System.out.println("memCardnum="+memVO.getMem_Cardnum());
+				//System.out.println("memCardnum="+memVO.getMem_Cardnum());
 				memVO.setMem_Carddue(mem_Carddue);
-				System.out.println("memCarddue="+memVO.getMem_Carddue());
+				//System.out.println("memCarddue="+memVO.getMem_Carddue());
 				memVO.setMem_Photo(mem_Photo);
-				System.out.println("memPhoto="+memVO.getMem_Photo());
+				//System.out.println("memPhoto="+memVO.getMem_Photo());
 								
 							
 				
@@ -244,47 +245,50 @@ public class MemServlet extends HttpServlet{
 				
 				
 				/***************************2.開始新增資料****************************************/
-//				MemberService memSvc = new MemberService();
-				memVO = memSvc.addMem(mem_Id, mem_Pw, mem_Name, mem_Gender, mem_Bir, mem_Mail, mem_Phone, mem_Receiver, mem_Repno, mem_Recounty, mem_Retown, mem_Readdr, mem_Cardnum, mem_Carddue, mem_Photo);
+
+				memSvc.addMem(mem_Id, mem_Pw, mem_Name, mem_Gender, mem_Bir, mem_Mail, mem_Phone, mem_Receiver, mem_Repno, mem_Recounty, mem_Retown, mem_Readdr, mem_Cardnum, mem_Carddue, mem_Photo);
 						
 				/***************************3.寄發驗證信****************************************/
 				
 				memVO = memSvc.getOneMem_Id(memVO.getMem_Id());
 				String status = memVO.getMem_Status();
 				
-				System.out.println(status);
-				System.out.println("m0".equals(status));
-				
 				if("m0".equals(status)) {
 					MailService ms = new MailService();
 					//取得驗證碼
 					String authCode = MemberRedis.returnAuthCode();
+					System.out.println("authCode="+authCode);
 					
 					String to = memVO.getMem_Mail();
 					String subject = "竹風堂認證信";
 					String messageText = "HI！" +memVO.getMem_Name()+ "\n驗證碼："+authCode  ;
 					ms.sendMail(to, subject, messageText);		
 					
-					
+					//連線Jedis
 					Jedis jedis = new Jedis("localhost", 6379);
 					jedis.auth("123456");
+
+					//存驗證碼以及時間
+
+					jedis.set(memVO.getMem_No(), authCode);
 					
-					jedis.set(memVO.getMem_Id(), authCode);
-					jedis.expire(memVO.getMem_Id(), 180);
-					
-					
+					jedis.expire(memVO.getMem_No(), 180);
+							
 				/***************************4.信已寄出,準備轉交檢查頁面(Send the check view)************/
 					jedis.close();
-					req.setAttribute("memVO", memVO);  // 含有輸入格式錯誤的memVO物件,也存入req
+					
+					
+					HttpSession session = req.getSession();
+					session.setAttribute("mem_No", memVO.getMem_No());
+					session.setAttribute("mem_Name", memVO.getMem_Name());
+					session.setAttribute("mem_Id", mem_Id);
+					
 					RequestDispatcher checkAuth = req.getRequestDispatcher("/front_end/member/checkstatus.jsp");
 					checkAuth.forward(req, res);
 					return;
 				}
 	
 				
-				/***************************4.新增完成,準備轉交(Send the Success view)************/
-				
-//				res.sendRedirect(req.getContextPath()+"/front_end/member/checkstatus.jsp");
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch(Exception e) {
@@ -298,38 +302,57 @@ public class MemServlet extends HttpServlet{
 		if("checkstatus".equals(action)) {
 			List<String> errorMsgs = new LinkedList<>();
 			req.setAttribute("errorMsgs", errorMsgs);
+			
 			try {
-			String autoCode = req.getParameter("authCode");
-			
-			Jedis jedis = new Jedis("localhost", 6379);
-			
+			//取得網頁輸入的驗證碼
+			String authCode = req.getParameter("authCode").trim();
+
+
+			//取得連線
+			Jedis jedis = new Jedis("localhost", 6379);	
 			jedis.auth("123456");
+						
+			HttpSession session = req.getSession();
 			
-			MemberVO memVO = (MemberVO)req.getAttribute("memVO");	
+			String mem_No = (String) session.getAttribute("mem_No");
+			String mem_Name = (String) session.getAttribute("mem_Name");	
+			String mem_Id = (String) session.getAttribute("mem_Id");
 			
-			String jedisAuthCode = jedis.get(memVO.getMem_Id());
+			//取得jedis的驗證碼
+
+			String jedisAuthCode = jedis.get(mem_No);
+System.out.println("jedisAuthCode="+jedisAuthCode);
+
 			
-			if(jedisAuthCode == null) {
-				
-				errorMsgs.add("驗證已失效");
-				
-			}else if(autoCode.equals(jedisAuthCode)) {
+
+			if(jedisAuthCode == null) {		
+				errorMsgs.add("驗證已失效");				
+			}else if(authCode.equals(jedisAuthCode)) {
 				MemberService ms = new MemberService();
-				ms.memChangeStatus(memVO.getMem_Id(), "m1");
+				ms.memChangeStatus(mem_Id, "m1");
+System.out.println("我已經改完囉");
 				
 			}else {
 				errorMsgs.add("輸入錯誤");
 				}
-			
+			if(!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/checkstatus.jsp");
+				failureView.forward(req, res);
+				return; //程式中斷
+			}
+						
 			jedis.close();
+			session.invalidate();
+			
+			RequestDispatcher login = req.getRequestDispatcher("/front_end/member/login.jsp");
+			login.forward(req, res);
 			
 			}catch(Exception e){
 				errorMsgs.add("驗證失敗"+e.getMessage());
 				RequestDispatcher failuerView = req.getRequestDispatcher("/front_end/member/checkstatus.jsp");
-				failuerView.forward(req, res);
-				
+				failuerView.forward(req, res);			
 			}
-		
+			
 		}
 		
 		
@@ -346,8 +369,6 @@ public class MemServlet extends HttpServlet{
 				String mem_Id = req.getParameter("mem_Id").trim();
 				String mem_Pw = req.getParameter("mem_Pw").trim();
 				
-				System.out.println("mem_Id="+mem_Id);
-				System.out.println("mem_Pw="+mem_Pw);
 				MemberVO memVO;
 				MemberService memSvc = new MemberService();
 				memVO = memSvc.getOneMem_Id(mem_Id); //找輸入帳號的資料，若無此帳號memVO為空值;
@@ -364,8 +385,8 @@ public class MemServlet extends HttpServlet{
 					errorMsgs.add("無此帳號");
 				}
 				//檢查狀態	
-//				String status = memVO.getMem_Status();				
-//			
+				String status = memVO.getMem_Status();				
+			
 //				if("m0".equals(status)) {
 //					
 //					errorMsgs.add("帳號尚未完成驗證");

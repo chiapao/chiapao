@@ -71,9 +71,7 @@ public class MemberService {
 
 		memVO.setMem_Id(mem_Id);
 		memVO.setMem_Status(mem_Status);
-
 		dao.changeStatus(memVO);
-
 		return memVO;
 	}
 

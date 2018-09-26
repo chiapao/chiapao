@@ -3,7 +3,9 @@
 <%@ page import="com.member.model.*"%>
 <%
 //MemServlet.java (Concroller) 存入req的memVO物件 (包括輸入資料錯誤時的memVO物件)
-  MemberVO memVO = (MemberVO)request.getAttribute("memVO");
+	
+session.getAttribute("mem_Name");
+
 %>
 <!DOCTYPE html>
 <html >
@@ -39,14 +41,24 @@
 	<form method="post" action="member.do" enctype="multipart/form-data" >
 	
 	    <table id="back">
+	    	<tr>
+	    		<c:if test="${not empty errorMsgs}">
+					<font style="color:black;" >請修正以下錯誤:</font>
+					<ul>
+						<c:forEach var="message" items="${errorMsgs}">
+							<li style="color:black">${message}</li>
+						</c:forEach>
+					</ul>
+				</c:if>
+	    	</tr>
 	        <tr>
-	        	<td class="tb1"><span align="center">Hi！${memVO.mem_Name}，歡迎你加入竹風堂。<br>麻煩幫我輸入驗證碼</span></td>
+	        	<td class="tb1"><span align="center">Hi！${mem_Name}，歡迎你加入竹風堂。<br>麻煩幫我輸入驗證碼</span></td>
 	        </tr>
 	        <tr>
 	            <td class="tdbtn">
-	            <input type=text value="輸入驗證碼">
+	            <input type=text value="輸入驗證碼"  name="authCode">
 	            <input type="hidden" name="action" value="checkstatus">
-	            <input type="submit" class="btn btn-warning btn-sm " align="center" name="authCode" value="驗證">           
+	            <input type="submit" class="btn btn-warning btn-sm " align="center" value="驗證">           
 	            </td>
 	        </tr>
 	    </table>
