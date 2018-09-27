@@ -1,5 +1,6 @@
 package com.member.model;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -11,7 +12,7 @@ public class MemberService {
 		dao = new MemberDAO();
 	}
 
-	public MemberVO addMem(String mem_Id, String mem_Pw, String mem_Name, String mem_Gender, String mem_Bir,
+	public MemberVO addMem(String mem_Id, String mem_Pw, String mem_Name, String mem_Gender, Date mem_Bir,
 			String mem_Mail, String mem_Phone, String mem_Receiver, String mem_Repno, String mem_Recounty,
 			String mem_Retown, String mem_Readdr, String mem_Cardnum, String mem_Carddue, byte[] mem_Photo) {
 
@@ -37,7 +38,7 @@ public class MemberService {
 		return memVO;
 	}
 
-	public MemberVO updateMem(String mem_Id, String mem_Pw, String mem_Name, String mem_Gender, String mem_Bir,
+	public MemberVO updateMem(String mem_Id, String mem_Pw, String mem_Name, String mem_Gender, Date mem_Bir,
 			String mem_Mail, String mem_Phone, String mem_Receiver, String mem_Repno, String mem_Recounty,
 			String mem_Retown, String mem_Readdr, String mem_Cardnum, String mem_Carddue, Integer mem_Bonus,
 			byte[] mem_Photo) {

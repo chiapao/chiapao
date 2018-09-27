@@ -121,7 +121,7 @@ body {
 							<!-- 無登入狀態 點選人頭示意圖將導入Login.jsp -->
 
 								<a
-								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/CA103G4/front_end/member/login.jsp' : '#'}"
+								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/chiapao/front_end/member/login.jsp' : '#'}"
 								id="navbarDropdownMenuLink" role="button" ${(memVO.mem_Name == null )? '' : 'data-toggle=\"dropdown\"'}
 								aria-haspopup="true" aria-expanded="false" style="padding-top:${(memVO.mem_Name == null )? '': '3px'} "> 
 									${(memVO.mem_Name == null )? 'Log in':memVO.mem_Name}
@@ -137,10 +137,10 @@ body {
 								<div class="dropdown-menu"
 									aria-labelledby="navbarDropdownMenuLink" style="display: ${(memVO.mem_Name == null )? 'none': ''} ">
 							<!-- 以下可以自己新增相關會員附屬功能 -->
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/member/memberinfo.jsp">會員基本資料</a>
 									<a class="dropdown-item" href="#">儲值紀錄</a> 
 									<a class="dropdown-item" href="#">訂單查詢</a> 
 									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/post/listPostByMember.jsp">我的貼文</a>
-									<a class="dropdown-item" href="#">修改會員</a>
 									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/member/member.do?logout=out" >登出</a>
 								</div>
 							</li>
