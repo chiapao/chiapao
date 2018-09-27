@@ -36,7 +36,7 @@
 					</ul>
 				</c:if>
 				
-		<form action="member.do" method="post" >	
+		<form action="<%= request.getContextPath() %>/front_end/member/member.do" method="post" >	
             <div class="tablebg" >
 				<table >					
 					<tr class="tr1">
