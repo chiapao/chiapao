@@ -160,7 +160,7 @@ $(document).ready(function(){
 
     	
     	for(var i=0;i<city.length;i++){
-    		inner=inner+'<option value='+city[i]+'\>'+city[i]+'</option>';
+    		inner=inner+'<option value='+city[i]+' id=city'+i+'\>'+city[i]+'</option>';
     	}
 		
     $("#city-list").html(inner)
@@ -214,13 +214,16 @@ $(function(){
 			document.getElementById('city-list').getElementsByTagName('option')[i].selected = 'selected';
 		}
 	}
-	for(var i=0;i<sector.length;i++){
-		if(town == sector[i]){
-			document.getElementById('sector-list').getElementsByTagName('option')[i].selected = 'selected';
-		}
-	}
-
 	
+index = document.getElementById('city-list').selectedIndex;
+console.log(index);
+console.log(town);
+
+		for(var i=0;i < sectors[index].length;i++){
+			if(town == sectors[index][i]){
+				document.getElementById('sector-list').getElementsByTagName('option')[i].selected = 'selected';
+			}
+		}
 })
 
 </script>
