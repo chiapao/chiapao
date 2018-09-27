@@ -37,13 +37,10 @@ $(document).ready(function(){
                 $("#city-list").change(function(){
                     index=this.selectedIndex;
                     var Sinner="";
-                    
-
-                    
+                                        
                     for(var i=0;i<sectors[index].length;i++){
                         Sinner=Sinner+'<option value='+sectors[index][i]+'\>'+sectors[index][i]+'</option>';
                    		}
-
                     
                     $("#sector-list").html(Sinner);
                 });
