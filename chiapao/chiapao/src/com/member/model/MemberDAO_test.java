@@ -30,25 +30,24 @@ public class MemberDAO_test {
 //		dao.insert(memVO);	
 	
 //修改會員資料
-//		MemberVO memVO = new MemberVO();
-//		memVO.setMem_Pw("123456");
-//		memVO.setMem_Name("海藍察");
-//		memVO.setMem_Gender("ms1");
-//		memVO.setMem_Bir("1990/12/20");
-//		memVO.setMem_Mail("kaohi@gmail.com");
-//		memVO.setMem_Phone("0933111333");
-//		memVO.setMem_Receiver("明玉");
-//		memVO.setMem_Repno("332");
-//		memVO.setMem_Recounty("台南市");
-//		memVO.setMem_Retown("永康區");
-//		memVO.setMem_Readdr("西門一路40號");
-//		memVO.setMem_Cardnum("1111-2222-3333-4444");
-//		memVO.setMem_Carddue("05/22");
-//		memVO.setMem_Bonus(600);
-//		memVO.setMem_Id("chiapao");
-//		
-//		MemberDAO dao = new MemberDAO();
-//		dao.update(memVO);
+		MemberVO memVO = new MemberVO();
+		memVO.setMem_Pw("123456");
+		memVO.setMem_Name("海藍察");
+		memVO.setMem_Gender("ms1");
+		memVO.setMem_Bir(java.sql.Date.valueOf("1990-12-20"));
+		memVO.setMem_Mail("kaohi@gmail.com");
+		memVO.setMem_Phone("0933111333");
+		memVO.setMem_Receiver("明玉");
+		memVO.setMem_Repno("332");
+		memVO.setMem_Recounty("台南市");
+		memVO.setMem_Retown("永康區");
+		memVO.setMem_Readdr("西門一路40號");
+		memVO.setMem_Cardnum("1111-2222-3333-4444");
+		memVO.setMem_Carddue("05/22");
+		memVO.setMem_Id("pao");
+		
+		MemberJDBCDAO dao = new MemberJDBCDAO();
+		dao.update(memVO);
 
 		
 //更改會員狀態
@@ -124,11 +123,11 @@ public class MemberDAO_test {
 	
 //比對帳號
 		
-		MemberJDBCDAO dao = new MemberJDBCDAO();
-		MemberVO memVO =dao.findById("AB");
-		
-		System.out.println(memVO);
-		
+//		MemberJDBCDAO dao = new MemberJDBCDAO();
+//		MemberVO memVO =dao.findById("AB");
+//		
+//		System.out.println(memVO);
+//		
 	}
 	
 }

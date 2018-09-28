@@ -21,14 +21,14 @@ import javax.sql.DataSource;
 public class MemberJDBCDAO implements MemberDAO_interface{
 	
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String USER = "CHIAPAO";
-	private static final String PASSWORD = "CHIAPAO";
+	private static final String USER = "testG4";
+	private static final String PASSWORD = "123456";
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	public static final String INSERT_STMT=
 			"INSERT INTO MEMBER(MEM_NO , MEM_ID , MEM_PW , MEM_NAME , MEM_GENDER , MEM_BIR , MEM_MAIL , MEM_PHONE , MEM_RECEIVER , MEM_REPNO, MEM_RECOUNTY , MEM_RETOWN ,MEM_READDR , MEM_CARDNUM , MEM_CARDDUE , MEM_PHOTO) " + 
 			"VALUES('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL),6,'0'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String UPDATE_STMT=
-			"UPDATE MEMBER SET MEM_PW=? , MEM_NAME=? , MEM_GENDER=? , MEM_BIR = to_date(?,'yyyy-mm-dd') , MEM_MAIL=? , MEM_PHONE=? , MEM_RECEIVER=? , MEM_REPNO=?, MEM_RECOUNTY =?, MEM_RETOWN=? ,MEM_READDR=? , MEM_CARDNUM=? , MEM_CARDDUE=? , MEM_BONUS=? , MEM_PHOTO=? WHERE MEM_ID =?";
+			"UPDATE MEMBER SET MEM_PW=? , MEM_NAME=? , MEM_GENDER=? , MEM_BIR = ? , MEM_MAIL=? , MEM_PHONE=? , MEM_RECEIVER=? , MEM_REPNO=?, MEM_RECOUNTY =?, MEM_RETOWN=? ,MEM_READDR=? , MEM_CARDNUM=? , MEM_CARDDUE=? , MEM_PHOTO=? WHERE MEM_ID =?";
 	public static final String CHANGESTATUS_STMT=
 			"UPDATE MEMBER SET MEM_STATUS=? WHERE MEM_ID = ?";
 	public static final String GETALL=
@@ -112,13 +112,11 @@ public class MemberJDBCDAO implements MemberDAO_interface{
 			pstmt.setString(11, memVO.getMem_Readdr());
 			pstmt.setString(12, memVO.getMem_Cardnum());
 			pstmt.setString(13, memVO.getMem_Carddue());
-			pstmt.setInt(14, memVO.getMem_Bonus());
-//			byte[] pic = getPictureByte("img/test2.jpg");
-//			pstmt.setBytes(15, pic);
-			pstmt.setBytes(15,memVO.getMem_Photo());
-			pstmt.setString(16, memVO.getMem_Id());
+			pstmt.setBytes(14,memVO.getMem_Photo());
+			pstmt.setString(15, memVO.getMem_Id());
 			int rowCount = pstmt.executeUpdate();
 			System.out.println("修改 "+rowCount+" 筆資料");
+
 					
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
