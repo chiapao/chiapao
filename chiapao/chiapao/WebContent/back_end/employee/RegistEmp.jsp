@@ -1,5 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.feature.model.*"%>
+<%@ page import="com.branch.model.*"%>
+<%@ page import="java.util.*"%>
+<% 
+
+FeatureService feasvc = new FeatureService(); 
+List<FeatureVO> fealist = new ArrayList();
+fealist = feasvc.getAll();
+pageContext.setAttribute("fealist", fealist);
+
+BranchService branSvc = new BranchService();
+List<BranchVO> branlist = new ArrayList();
+branlist = branSvc.getAll();
+pageContext.setAttribute("branlist",branlist);
+%>
 
 
 <!DOCTYPE html>
@@ -24,21 +39,28 @@
 <body>
 <jsp:include page="/back_end/PostHeader.jsp"></jsp:include>
 <!--your html   start==================================================================================-->
+
 <div class="container col-5 rounded " style="padding-top: 100px;">
     <table  id="back">
         <tr>
             <td colspan="2" id="img-td">
                 <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles()" name="emp_Photo">
-                <a href="javascript:doClick()"><img class="custom-img" src="img/no-photo.png" id="img"></a>
-                <div id="fileList">
-                
+                <a href="javascript:doClick()"><img class="custom-img" src="<%= request.getContextPath() %>/back_end/employee/img/no-photo.png" id="img"></a>
+                <div id="fileList">              
                 </div>
-<!--            <img src="img/panda.png" class="img-thumbnail custom-img" width="200px" height="200px">-->
             </td>
         </tr>
-
         <tr>
-            <td class="td1"><label for="branch_No" class="col-form-label">分店編號</label></td><td class="td2" ><select class="form-control-sm" id="branch_No"></td>
+            <td class="td1"><label for="branch_No" class="col-form-label">分店編號</label>				
+				</td>
+				<td class="td2" >
+            <select class="form-control-sm" id="branch_No" name="branch_No">
+            	<c:forEach var="branchVO" items="${branlist}" >
+					<option value="${branchVO.branch_No}">${branchVO.branch_Name}</option>             	
+				</c:forEach>
+        
+            </select>
+            </td>
         </tr>
         <tr>
             <td class="td1" ><label for="emp_Acnum" class="col-form-label">帳號</label></td><td class="td2" ><input type="text" class="form-control-sm empinput" id="emp_Acnum" name="emp_Acnum"></td>
@@ -65,9 +87,9 @@
         </tr>        
 
         <tr>
-            <td class="td1"><label for="branch_No" class="col-form-label">員工職稱</label></td>
+            <td class="td1"><label for="emp_Pso" class="col-form-label">員工職稱</label></td>
             <td class="td2" >
-                <select class="form-control-sm" id="branch_No">
+                <select class="form-control-sm" ">
                     <option value="請選擇">請選擇</option>
                     <option value="經理">經理</option>
                     <option value="服務生">服務生</option>
@@ -78,10 +100,19 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="td2 fea">權限</td>
+            <td colspan="2" class="td2 fea">功能使用權限</td>
         </tr>
-        <tr>
-            
+        <tr><td >
+        	<c:forEach var="featureVO" items="${fealist}" begin="1" end="5" >
+  					<input type=checkbox name="fea_No" value="${featureVO.fea_No}">${featureVO.fea_Name}</br> 
+			</c:forEach>
+			</td>
+			<td >
+        	<c:forEach var="featureVO" items="${fealist}" begin="6" >
+  					<input type=checkbox name="fea_No" value="${featureVO.fea_No}">${featureVO.fea_Name}</br>  
+			</c:forEach>			
+			</td>
+			
         </tr>
 
         <tr>
