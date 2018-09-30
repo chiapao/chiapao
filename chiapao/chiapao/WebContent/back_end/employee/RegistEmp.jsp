@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.feature.model.*"%>
 <%@ page import="com.branch.model.*"%>
+<%@ page import="com.employee.model.*"%>
 <%@ page import="java.util.*"%>
 <% 
 
@@ -14,6 +15,9 @@ BranchService branSvc = new BranchService();
 List<BranchVO> branlist = new ArrayList();
 branlist = branSvc.getAll();
 pageContext.setAttribute("branlist",branlist);
+
+EmpVO empVO =(EmpVO)request.getAttribute("empVO");
+
 %>
 
 
@@ -41,6 +45,7 @@ pageContext.setAttribute("branlist",branlist);
 <!--your html   start==================================================================================-->
 
 <div class="container col-5 rounded " style="padding-top: 100px;">
+<Form action="emp.do" method="POST" enctype="multipart/form-data" >
     <table  id="back">
         <tr>
             <td colspan="2" id="img-td">
@@ -79,17 +84,17 @@ pageContext.setAttribute("branlist",branlist);
         </tr>
 
         <tr>
-            <td class="td1"><label for="emp_Name" class="col-form-label">員工姓名</label></td><td class="td2" ><input type="password" class="form-control-sm empinput" id="emp_Name" name="emp_Name">
+            <td class="td1"><label for="emp_Name" class="col-form-label">員工姓名</label></td><td class="td2" ><input type="text" class="form-control-sm empinput" id="emp_Name" name="emp_Name">
         </tr>
         <tr>
-            <td class="td1"><label for="mem_Tel" class="col-form-label">員工電話</label></td>
-            <td class="td2" ><input type="text" class="form-control-sm empinput" id="mem_Phone"></td>
+            <td class="td1"><label for="emp_Tel" class="col-form-label">員工電話</label></td>
+            <td class="td2" ><input type="text" class="form-control-sm empinput" id="emp_Tel" name="emp_Tel"></td>
         </tr>        
 
         <tr>
-            <td class="td1"><label for="emp_Pso" class="col-form-label">員工職稱</label></td>
+            <td class="td1"><label for="emp_Pos" class="col-form-label">員工職稱</label></td>
             <td class="td2" >
-                <select class="form-control-sm" ">
+                <select class="form-control-sm" id="emp_Pos" name="emp_Pos">
                     <option value="請選擇">請選擇</option>
                     <option value="經理">經理</option>
                     <option value="服務生">服務生</option>
@@ -104,25 +109,26 @@ pageContext.setAttribute("branlist",branlist);
         </tr>
         <tr><td >
         	<c:forEach var="featureVO" items="${fealist}" begin="1" end="5" >
-  					<input type=checkbox name="fea_No" value="${featureVO.fea_No}">${featureVO.fea_Name}</br> 
+  					<input type=checkbox name="fea_No" id="${featureVO.fea_No}" value="${featureVO.fea_No}"><label for="${featureVO.fea_No}" class="col-form-label">${featureVO.fea_Name}</label></br> 
 			</c:forEach>
 			</td>
 			<td >
         	<c:forEach var="featureVO" items="${fealist}" begin="6" >
-  					<input type=checkbox name="fea_No" value="${featureVO.fea_No}">${featureVO.fea_Name}</br>  
+  					<input type=checkbox name="fea_No" id="${featureVO.fea_No}" value="${featureVO.fea_No}"><label for="${featureVO.fea_No}" class="col-form-label">${featureVO.fea_Name}</label></br>  
 			</c:forEach>			
 			</td>
-			
+
         </tr>
 
         <tr>
             <td colspan="2" class="tdbtn">
             <input type="button" class="btn btn-warning btn-sm " align="right" id="td2cancel" value="取消">
-            <input type="hidden" name="action" name="empinsert">            
+            <input type="hidden" name="action" value="empinsert">            
             <input type="submit" class="btn btn-warning btn-sm " align="right" id="td2yes" value="確認">
             </td>
         </tr>
     </table>
+</Form>
 </div>    
 
 <!--以下勿動-->
