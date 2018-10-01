@@ -118,13 +118,16 @@ public class EmpauthorityDAO implements EmpauthorityDAO_interface{
 			System.out.println("從員工新增過來的連線成功");
 			System.out.println(empauthorVO.getEmp_No());
 			System.out.println(empauthorVO.getFea_No());
-			pstmt.setString(1, empauthorVO.getEmp_No());
-			System.out.println("111111111111111111111111");
-			pstmt.setString(2, empauthorVO.getFea_No());
-			System.out.println("222222222222222222222222");
-			int rowCount =pstmt.executeUpdate();
-			System.out.println("新增 "+rowCount+" 筆員工權限");
 			
+			pstmt.setString(1, empauthorVO.getEmp_No());
+			System.out.println("pstmt放入empauthorVO.getEmp_No()");
+			
+			pstmt.setString(2, empauthorVO.getFea_No());
+			System.out.println("pstmt放入empauthorVO.getFea_No()");
+			
+			pstmt.executeUpdate();
+
+			System.out.println("新增會員權限OK");
 			
 			
 		} catch (SQLException se) {

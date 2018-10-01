@@ -13,8 +13,8 @@ import java.util.Set;
 public class BranchDAO implements BranchDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "testG4";
-	String passwd = "123456";
+	String userid = "CHIAPAO";
+	String passwd = "CHIAPAO";
 
 	private static final String INSERT_STMT = "INSERT INTO Branch (Branch_NO, Branch_NAME, Branch_CITY, Branch_DIST, Branch_ADDR, Branch_POS, Branch_LAN, Branch_LAT, Branch_TIME, Branch_DEL, Branch_TEL, Branch_TDESK) "
 			+ "VALUES(LPAD(Branch_NO_seq.NEXTVAL,4,'0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

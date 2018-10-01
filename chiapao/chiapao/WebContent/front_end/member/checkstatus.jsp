@@ -58,7 +58,7 @@ session.getAttribute("mem_Name");
 	        </tr>
 	        <tr>
 	            <td class="tdbtn">
-	            <input type=text value="輸入驗證碼"  name="authCode">
+	            <input type=text placeHolder="輸入驗證碼"  name="authCode" >
 	            <input type="hidden" name="action" value="checkstatus">
 	            <input type="submit" class="btn btn-warning btn-sm " align="center" value="驗證">           
 	            </td>
@@ -70,7 +70,8 @@ session.getAttribute("mem_Name");
 
 <!--以下勿動-->
     <!-- Footer -->
-<%-- <jsp:include page="/front_end/footer.jsp"></jsp:include> --%>
+<jsp:include page="/front_end/footer.jsp"></jsp:include>
 	 <!-- Footer -->		
 		</body>
+
 	</html>

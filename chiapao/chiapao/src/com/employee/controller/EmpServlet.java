@@ -90,7 +90,7 @@ public class EmpServlet extends HttpServlet{
 				in.close();
 				System.out.println("emp_Photo="+emp_Photo);
 				
-				//將所勾選的功能包裝成集合
+				//將所勾選的功能放入員工包裝成集合
 				List<EmpauthorityVO> empauthorlist = new ArrayList<>();
 				String valuse[]=req.getParameterValues("fea_No");
 				if(valuse != null) {
