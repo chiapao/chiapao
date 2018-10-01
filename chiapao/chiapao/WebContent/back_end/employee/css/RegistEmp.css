@@ -6,7 +6,7 @@
 }
 
 body {
-	font-family: Montserrat, Arial, "微軟正黑體", "Microsoft JhengHei" !important;
+	font-family: Montserrat, Arial, "敺株�迤暺��", "Microsoft JhengHei" !important;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
@@ -49,6 +49,13 @@ body {
 .td2.fea {
 	background-color: rgba(240, 0, 0, 0.45);
 }
+.td3{
+	width:50%;	
+}
+.td4{
+	width:50%;	
+}
+
 
 #td2cancel{
 	margin-top: 30px;

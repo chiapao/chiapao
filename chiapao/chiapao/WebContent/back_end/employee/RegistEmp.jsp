@@ -107,12 +107,12 @@ EmpVO empVO =(EmpVO)request.getAttribute("empVO");
         <tr>
             <td colspan="2" class="td2 fea">功能使用權限</td>
         </tr>
-        <tr><td >
+        <tr><td class="td3">
         	<c:forEach var="featureVO" items="${fealist}" begin="1" end="5" >
   					<input type=checkbox name="fea_No" id="${featureVO.fea_No}" value="${featureVO.fea_No}"><label for="${featureVO.fea_No}" class="col-form-label">${featureVO.fea_Name}</label></br> 
 			</c:forEach>
 			</td>
-			<td >
+			<td class="td4">
         	<c:forEach var="featureVO" items="${fealist}" begin="6" >
   					<input type=checkbox name="fea_No" id="${featureVO.fea_No}" value="${featureVO.fea_No}"><label for="${featureVO.fea_No}" class="col-form-label">${featureVO.fea_Name}</label></br>  
 			</c:forEach>			
