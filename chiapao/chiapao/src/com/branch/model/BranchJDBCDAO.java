@@ -10,22 +10,11 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
-public class BranchDAO implements BranchDAO_interface {
-	
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+public class BranchJDBCDAO implements BranchDAO_interface {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	String userid = "CHIAPAO";
+	String passwd = "CHIAPAO";
 
 	private static final String INSERT_STMT = "INSERT INTO Branch (Branch_NO, Branch_NAME, Branch_CITY, Branch_DIST, Branch_ADDR, Branch_POS, Branch_LAN, Branch_LAT, Branch_TIME, Branch_DEL, Branch_TEL, Branch_TDESK) "
 			+ "VALUES(LPAD(Branch_NO_seq.NEXTVAL,4,'0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -48,8 +37,8 @@ public class BranchDAO implements BranchDAO_interface {
 		int row = 0;
 
 		try {
-
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			try {
 				pstmt = con.prepareStatement(INSERT_STMT);
 			} catch (SQLException e) {
@@ -70,6 +59,8 @@ public class BranchDAO implements BranchDAO_interface {
 			pstmt.setInt(11, BranchVO.getBranch_Tdesk());
 
 			row = pstmt.executeUpdate();
+		} catch (ClassNotFoundException ce) {
+			ce.printStackTrace();
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} finally {
@@ -91,7 +82,8 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		int row = 0;
 		try {
-			conn = ds.getConnection();
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, userid, passwd);
 			pstmt = conn.prepareStatement(UPDATE_STMT);
 			pstmt.setString(1, BranchVO.getBranch_Name());
 			pstmt.setString(2, BranchVO.getBranch_City());
@@ -106,6 +98,8 @@ public class BranchDAO implements BranchDAO_interface {
 			pstmt.setInt(11, BranchVO.getBranch_Tdesk());
 			pstmt.setString(12, BranchVO.getBranch_No());
 			row = pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -133,10 +127,13 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		int row = 0;
 		try {
-			conn = ds.getConnection();
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, userid, passwd);
 			pstmt = conn.prepareStatement(DELETE_STMT);
 			pstmt.setString(1, Branch_No);
 			row = pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -165,7 +162,8 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = ds.getConnection();
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, userid, passwd);
 			pstmt = conn.prepareStatement(GET_ONE_STMT);
 			pstmt.setString(1, Branch_No);
 			rs = pstmt.executeQuery();
@@ -184,6 +182,8 @@ public class BranchDAO implements BranchDAO_interface {
 				BranchVO.setBranch_Tel(rs.getString("Branch_Tel"));
 				BranchVO.setBranch_Tdesk(rs.getInt("Branch_Tdesk"));
 			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -221,7 +221,8 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = ds.getConnection();
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, userid, passwd);
 			pstmt = conn.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -240,6 +241,8 @@ public class BranchDAO implements BranchDAO_interface {
 				BranchVO.setBranch_Tdesk(rs.getInt("Branch_Tdesk"));
 				list.add(BranchVO);
 			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -277,7 +280,8 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn = ds.getConnection();
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, userid, passwd);
 			pstmt = conn.prepareStatement(GET__BY_CITY_STMT);
 			pstmt.setString(1, branch_City);
 			rs = pstmt.executeQuery();
@@ -297,6 +301,8 @@ public class BranchDAO implements BranchDAO_interface {
 				BranchVO.setBranch_Tdesk(rs.getInt("Branch_Tdesk"));
 				list.add(BranchVO);
 			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
