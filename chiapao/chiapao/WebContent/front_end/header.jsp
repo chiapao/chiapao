@@ -60,6 +60,7 @@ body {
 	background-position: center;
 	background-size: cover;
 }
+
 </style>
 <!--Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js "></script>
@@ -88,19 +89,25 @@ body {
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNavDropdown">
 						<ul class="navbar-nav nav-fill mx-auto">
-							<li class="nav-item active"><a class="nav-link" href="#">分店資訊
-									<span class="sr-only">(current)</span>
-							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">餐點介紹</a></li>
+							<li>
+								<a class="index_page" href="<%=request.getContextPath()%>/front_end/index.jsp">
+									<img src="/CA103G4/front_end/img/LOGO-04.png" style="width:50px;"></a>
+							</li>
+							
+							<li class="nav-item active">
+								<a class="nav-link" href="#">分店資訊
+									<span class="sr-only">(current)</span></a>
+							</li>
+<!-- 							<li class="nav-item"><a class="nav-link" href="#">餐點介紹</a></li> -->
 							<li class="nav-item"><a class="nav-link" href="#"></a></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#"
 								id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"> 客製化拉麵 </a>
+								aria-haspopup="true" aria-expanded="false"> 餐點 </a>
 								<div class="dropdown-menu"
 									aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item" href="#">經典餐點</a> <a
-										class="dropdown-item" href="#">客製化餐點</a>
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/menu/listAllMenu2.jsp">經典餐點</a> 
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/custommeals/addCustommeals2.jsp">客製化點餐</a>
 								</div></li>
 							<li class="nav-item"><a class="nav-link" href="#">線上預約訂位</a>
 							</li>
@@ -121,7 +128,7 @@ body {
 							<!-- 無登入狀態 點選人頭示意圖將導入Login.jsp -->
 
 								<a
-								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/chiapao/front_end/member/login.jsp' : '#'}"
+								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/CA103G4/front_end/member/login.jsp' : '#'}"
 								id="navbarDropdownMenuLink" role="button" ${(memVO.mem_Name == null )? '' : 'data-toggle=\"dropdown\"'}
 								aria-haspopup="true" aria-expanded="false" style="padding-top:${(memVO.mem_Name == null )? '': '3px'} "> 
 									${(memVO.mem_Name == null )? 'Log in':memVO.mem_Name}
@@ -144,14 +151,14 @@ body {
 									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/member/logout.do" >登出</a>
 								</div>
 							</li>
-
+					
 						</ul>
 					</div>
 				</nav>
 
 			</div>
 		</header>
-
+		
 	
 	</section>
 </body>

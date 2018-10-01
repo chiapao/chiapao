@@ -15,7 +15,7 @@ import java.sql.*;
 public class EmpJDBCDAO implements EmpDAO_interface{
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String userid = "yes";
+	String userid = "testG4";
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT = 
@@ -26,7 +26,8 @@ public class EmpJDBCDAO implements EmpDAO_interface{
 		"select EMP_NO,BRANCH_NO,EMP_ACNUM,EMP_PSW,EMP_NAME,EMP_GENDER,EMP_POS,EMP_TEL,EMP_STATUS,to_char(EMP_CREDATE,'yyyy-mm-dd') EMP_CREDATE,EMP_PHOTO from EMPLOYEE where EMP_NO = ?";
 	private static final String UPDATE =
 		"UPDATE EMPLOYEE set BRANCH_NO=? ,EMP_ACNUM=? ,EMP_PSW=? ,EMP_NAME=? ,EMP_GENDER=? ,EMP_POS=? ,EMP_TEL=? ,EMP_STATUS=? ,EMP_PHOTO=? where EMP_NO = ?";
-	
+	private static final String GET_ONE_BY_EMPACNUM=
+			"select EMP_NO,BRANCH_NO,EMP_ACNUM,EMP_PSW,EMP_NAME,EMP_GENDER,EMP_POS,EMP_TEL,EMP_STATUS,to_char(EMP_CREDATE,'yyyy-mm-dd') EMP_CREDATE,EMP_PHOTO from EMPLOYEE where EMP_ACNUM = ?";
 	@Override
 	public void insert(EmpVO empVO) {
 		
@@ -279,30 +280,30 @@ public class EmpJDBCDAO implements EmpDAO_interface{
 //		java.sql.Date ds1 = new java.sql.Date (long1);
 		
 		//新增
-		EmpVO empVO1 = new EmpVO();
-		empVO1.setBranch_No("0001");
-		empVO1.setEmp_Acnum("65987");
-		empVO1.setEmp_Psw("95753");
-		empVO1.setEmp_Name("帥帥");
-		empVO1.setEmp_Gender("G1");
-		empVO1.setEmp_Pos("工讀生");
-		empVO1.setEmp_Tel("0976100100");
-		empVO1.setEmp_Photo(getPictureByteArray("img/000.jpg"));
-		dao.insert(empVO1);
+//		EmpVO empVO1 = new EmpVO();
+//		empVO1.setBranch_No("0001");
+//		empVO1.setEmp_Acnum("65987");
+//		empVO1.setEmp_Psw("95753");
+//		empVO1.setEmp_Name("帥帥");
+//		empVO1.setEmp_Gender("G1");
+//		empVO1.setEmp_Pos("工讀生");
+//		empVO1.setEmp_Tel("0976100100");
+//		empVO1.setEmp_Photo(getPictureByteArray("img/000.jpg"));
+//		dao.insert(empVO1);
 		
 		//修改
-		EmpVO empVO2 = new EmpVO();
-		empVO2.setEmp_No("E000000008");
-		empVO2.setBranch_No("0002");
-		empVO2.setEmp_Acnum("6598700");
-		empVO2.setEmp_Psw("9575300");
-		empVO2.setEmp_Name("藍藍");
-		empVO2.setEmp_Gender("G2");
-		empVO2.setEmp_Pos("經理");
-		empVO2.setEmp_Tel("0976100100");
-		empVO2.setEmp_Status("E2");
-		empVO2.setEmp_Photo(getPictureByteArray("img/001.png"));
-		dao.update(empVO2);	
+//		EmpVO empVO2 = new EmpVO();
+//		empVO2.setEmp_No("E000000008");
+//		empVO2.setBranch_No("0002");
+//		empVO2.setEmp_Acnum("6598700");
+//		empVO2.setEmp_Psw("9575300");
+//		empVO2.setEmp_Name("藍藍");
+//		empVO2.setEmp_Gender("G2");
+//		empVO2.setEmp_Pos("經理");
+//		empVO2.setEmp_Tel("0976100100");
+//		empVO2.setEmp_Status("E2");
+//		empVO2.setEmp_Photo(getPictureByteArray("img/001.png"));
+//		dao.update(empVO2);	
 		
 		// 查詢
 		EmpVO empVO3 = dao.findByPrimaryKey("E000000001");
@@ -333,14 +334,93 @@ public class EmpJDBCDAO implements EmpDAO_interface{
 			System.out.println(aEmp.getEmp_Status()+ ",");
 			System.out.println(aEmp.getEmp_Credate()+ ",");
 			System.out.println(aEmp.getEmp_Photo());
-		
+			System.out.println("---------------------");
 		}
+		//查詢BY EMP_ANCUM
+		
+		EmpVO empVO4 = dao.findByEmpAcnum("b123456");
+		System.out.println(empVO4.getEmp_No()+ ",");
+		System.out.println(empVO4.getBranch_No()+ ",");
+		System.out.println(empVO4.getEmp_Acnum()+ ",");
+		System.out.println(empVO4.getEmp_Psw()+ ",");
+		System.out.println(empVO4.getEmp_Name()+ ",");
+		System.out.println(empVO4.getEmp_Gender()+ ",");
+		System.out.println(empVO4.getEmp_Pos()+ ",");
+		System.out.println(empVO4.getEmp_Tel()+ ",");
+		System.out.println(empVO4.getEmp_Status()+ ",");
+		System.out.println(empVO4.getEmp_Credate()+ ",");
+		System.out.println(empVO4.getEmp_Photo());
+		System.out.println("---------------------");
 	}
 
 	@Override
 	public void insertWithEmpauthorityVO(EmpVO empVO, List<EmpauthorityVO> empauthorlist) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public EmpVO findByEmpAcnum(String emp_Acnum) {
+		// TODO Auto-generated method stub
+		EmpVO empVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_ONE_BY_EMPACNUM);
+			
+			pstmt.setString(1, emp_Acnum);
+			rs = pstmt.executeQuery();
+		
+		    while(rs.next()) {
+		    	
+		    	empVO = new EmpVO();
+		    	empVO.setEmp_No(rs.getString("emp_no"));
+		    	empVO.setBranch_No(rs.getString("branch_no"));
+				empVO.setEmp_Acnum(rs.getString("emp_acnum"));
+				empVO.setEmp_Psw(rs.getString("emp_psw"));
+				empVO.setEmp_Name(rs.getString("emp_name"));
+				empVO.setEmp_Gender(rs.getString("emp_gender"));
+				empVO.setEmp_Pos(rs.getString("emp_pos"));
+				empVO.setEmp_Tel(rs.getString("emp_tel"));      	
+				empVO.setEmp_Status(rs.getString("emp_status"));  	
+				empVO.setEmp_Credate(rs.getDate("emp_credate"));
+				empVO.setEmp_Photo(rs.getBytes("emp_photo"));
+				
+		    }
+	
+		}catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return empVO;
 	}
 	
 }

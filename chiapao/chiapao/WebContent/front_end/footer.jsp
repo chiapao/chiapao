@@ -30,8 +30,9 @@ footer {
 </style>
 <!--Bootstrap JS -->
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-	type="text/css">
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/v4-shims.css">
 <link rel="stylesheet" href="theme.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -47,7 +48,7 @@ footer {
 </head>
 <body>
 	<footer>
-		<div id="nav-bar-footer">
+		<div id="nav-bar-footer" style="margin-top:400px">
 			<div class="text-white bg-self">
 				<div class="container">
 					<div class="row">
