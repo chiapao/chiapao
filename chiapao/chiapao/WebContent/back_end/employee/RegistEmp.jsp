@@ -72,10 +72,10 @@ pageContext.setAttribute("branlist",branlist);
             </select>
             </td>
         </tr>
-        <tr>${empVO.emp_Acnum}
+        <tr>
             <td class="td1" ><label for="emp_Acnum" class="col-form-label">帳號</label></td><td class="td2" ><input type="text" class="form-control-sm empinput" id="emp_Acnum" name="emp_Acnum" value="${empVO.emp_Acnum}"></td>
         </tr>
-        <tr>${empVO.emp_Psw }
+        <tr>
             <td class="td1"><label for="emp_Psw" class="col-form-label">密碼</label></td><td class="td2" ><input type="password" class="form-control-sm empinput" id="emp_Psw" name="emp_Psw" value="${empVO.emp_Psw }"></td>
         </tr>
         <tr>
