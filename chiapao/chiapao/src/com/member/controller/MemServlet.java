@@ -22,6 +22,7 @@ import javax.sql.DataSource;
 import com.mailservice.MailService;
 import com.member.model.*;
 
+
 import redis.clients.jedis.Jedis;
 
 @MultipartConfig(fileSizeThreshold=1024*1024)
@@ -312,21 +313,7 @@ public class MemServlet extends HttpServlet{
 				//修改開始
 				String mem_Id = req.getParameter("mem_Id").trim();
 				System.out.println("update");
-//				String mem_IdReg = "^[(a-zA-Z0-9_)]{2,50}$";
-				
-//				MemberService memSvc = new MemberService();
-//				MemberVO checkId = memSvc.getOneMem_Id(mem_Id);
-				
-//				//帳號是否重複檢查
-//				if(checkId !=null) {
-//					errorMsgs.add("帳號重複");
-//				}
-//				//帳號驗證
-//				if(mem_Id == null || mem_Id.length() == 0) {
-//					errorMsgs.add("尚未填寫帳號");
-//				}  else if(!mem_Id.trim().matches(mem_IdReg)) {
-//					errorMsgs.add("帳號須為英文或數字或底線");
-//				}
+
 				
 				//密碼驗證
 				String mem_Pw = req.getParameter("mem_Pw").trim();
@@ -402,15 +389,27 @@ public class MemServlet extends HttpServlet{
 				String mem_Carddue = req.getParameter("mem_Carddue");
 				
 				//照片處理
-				Part part = req.getPart("mem_Photo");
-				InputStream in = part.getInputStream();
-				byte[] mem_Photo = new byte[in.available()];
-				in.read(mem_Photo);
-				in.close();
+				Part part = req.getPart("mem_Photo");			
+				byte[] mem_Photo = null;
 				
-				
-				
-				
+				try {
+					String filename = getFileName(part);
+					if (filename != null && part.getContentType() != null) {
+						InputStream in = part.getInputStream();
+						mem_Photo = new byte[in.available()];
+						in.read(mem_Photo);
+						in.close();
+					} else {
+						MemberService memsvc = new MemberService();
+						MemberVO memVO = memsvc.getOneMem_Id(mem_Id);
+						mem_Photo = memVO.getMem_Photo();
+					}
+				} catch (FileNotFoundException fe) {
+					fe.printStackTrace();
+				}
+
+			
+								
 				MemberVO memVO = new MemberVO();
 
 				memVO.setMem_Name(mem_Name);
@@ -630,5 +629,19 @@ System.out.println("我已經改完囉");
 	}
 	
 	
-
+	public String getFileName(Part part) {
+		
+		String header = part.getHeader("content-disposition");
+		System.out.println("header=" + header); // 測試用
+//		System.out.println(header);
+		String filename = new File(header.substring(header.lastIndexOf("=") + 2, header.length() - 1)).getName();
+		System.out.println("filename=" + filename);  //測試用
+		//取出副檔名
+		String fnameExt = filename.substring(filename.lastIndexOf(".")+1,filename.length()).toLowerCase();
+		System.out.println("fnameExt=" + fnameExt);  //測試用
+		if (filename.length() == 0) {
+			return null;
+		}
+		return fnameExt;
+	}
 }
