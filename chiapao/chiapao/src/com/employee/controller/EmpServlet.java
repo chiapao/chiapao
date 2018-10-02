@@ -46,7 +46,7 @@ public class EmpServlet extends HttpServlet{
 				String emp_AcnumReq = "^[(A-Za-z0-9_){1,50}]$";
 				if(emp_Acnum == null || emp_Acnum.length()==0) {
 					errorMsgs.add("帳號尚未填寫");
-				}else if (!(emp_Acnum.matches(emp_AcnumReq))) {
+				}else if (!emp_Acnum.trim().matches(emp_AcnumReq)) {
 					errorMsgs.add("帳號僅可填寫數字和英文");
 				}				
 				//密碼檢查
@@ -54,7 +54,7 @@ public class EmpServlet extends HttpServlet{
 				String emp_PswReq = "^[(0-9A-Za-z_)] {1,50}$";
 				if(emp_Psw == null || emp_Psw.length()==0) {
 					errorMsgs.add("密碼尚未填寫");
-				}else if (!(emp_Psw.matches(emp_PswReq))) {
+				}else if (!emp_Psw.trim().matches(emp_PswReq)) {
 					errorMsgs.add("密碼僅可填寫數字和英文");
 				}
 				//性別檢查
@@ -125,9 +125,6 @@ public class EmpServlet extends HttpServlet{
 				empVO.setEmp_Pos(emp_Pos);
 				System.out.println("emp_Pos="+emp_Pos);
 				
-				EmpService empsvc = new EmpService();
-				empsvc.addEmpWithAutoKeys(branch_No, emp_Acnum, emp_Psw, emp_Name, emp_Gender, emp_Pos, emp_Tel, emp_Photo, empauthorlist);
-				
 				
 				if(!(errorMsgs.isEmpty())) {					
 					req.setAttribute("empVO", empVO);  // 含有輸入格式錯誤的empVO物件,也存入req
@@ -136,6 +133,11 @@ public class EmpServlet extends HttpServlet{
 					return; //程式中斷
 					
 				}
+				
+				EmpService empsvc = new EmpService();
+				empsvc.addEmpWithAutoKeys(branch_No, emp_Acnum, emp_Psw, emp_Name, emp_Gender, emp_Pos, emp_Tel, emp_Photo, empauthorlist);
+				
+		
 				
 				
 			}catch(Exception e) {

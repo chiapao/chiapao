@@ -40,7 +40,7 @@
 			width="100%" height="" alt="">
 <!--your html   start==================================================================================-->
 <div class="container col-5 rounded ">
-	<form method="post" action="member.do" enctype="multipart/form-data" >
+	<form method="post" action="<%=request.getContextPath() %>/member.do" enctype="multipart/form-data" >
     <table id="back">
         <tr>
             <td colspan="2" id="img-td">
