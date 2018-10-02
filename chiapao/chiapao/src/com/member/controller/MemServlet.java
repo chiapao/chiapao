@@ -36,12 +36,9 @@ public class MemServlet extends HttpServlet{
 		ServletOutputStream out = res.getOutputStream();
 		res.setContentType("image/gif");
 			try {
-				Context ctx = new javax.naming.InitialContext();
-				DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
-				con = ds.getConnection();
+
 				String mem_No = req.getParameter("mem_No").trim();
-		System.out.println(mem_No);
-		
+				System.out.println(mem_No);		
 				Statement stmt = con.createStatement();
 	
 				ResultSet rs = stmt.executeQuery(
@@ -55,7 +52,6 @@ public class MemServlet extends HttpServlet{
 					}
 					in.close();
 				}else {
-					//res.sendError(HttpServletResponse.SC_NOT_FOUND);
 					InputStream in = getServletContext().getResourceAsStream("/front_end/img/no-photo.png");
 					byte[] buf = new byte[in.available()];
 					in.read(buf);
@@ -70,11 +66,29 @@ public class MemServlet extends HttpServlet{
 				in.read(b);
 				out.write(b);
 				in.close();
-			}			
-						
-//		doPost(req,res);
+			}
+							
+		doPost(req,res);
+	}
+	public void init() throws ServletException {
+		try {
+			Context ctx = new javax.naming.InitialContext();
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			con = ds.getConnection();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
+	public void destroy() {
+		try {
+			if (con != null) con.close();
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		
@@ -288,7 +302,7 @@ public class MemServlet extends HttpServlet{
 		
 		
 		//修改區塊-chiapao
-		if("update".equals(action)){  // 來自register.jsp的請求  
+		if("update".equals(action)){  
 			List<String> errorMsgs = new LinkedList<>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
@@ -297,6 +311,7 @@ public class MemServlet extends HttpServlet{
 				
 				//修改開始
 				String mem_Id = req.getParameter("mem_Id").trim();
+				System.out.println("update");
 //				String mem_IdReg = "^[(a-zA-Z0-9_)]{2,50}$";
 				
 //				MemberService memSvc = new MemberService();

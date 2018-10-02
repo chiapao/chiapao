@@ -91,11 +91,11 @@ body {
 						<ul class="navbar-nav nav-fill mx-auto">
 							<li>
 								<a class="index_page" href="<%=request.getContextPath()%>/front_end/index.jsp">
-									<img src="/CA103G4/front_end/img/LOGO-04.png" style="width:50px;"></a>
+									<img src="/chiapao/front_end/img/LOGO-04.png" style="width:50px;"></a>
 							</li>
 							
 							<li class="nav-item active">
-								<a class="nav-link" href="#">分店資訊
+								<a class="nav-link" href="<%=request.getContextPath()%>/front_end/branchInfo/branch_mang.jsp">分店資訊
 									<span class="sr-only">(current)</span></a>
 							</li>
 <!-- 							<li class="nav-item"><a class="nav-link" href="#">餐點介紹</a></li> -->
@@ -128,7 +128,7 @@ body {
 							<!-- 無登入狀態 點選人頭示意圖將導入Login.jsp -->
 
 								<a
-								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/CA103G4/front_end/member/login.jsp' : '#'}"
+								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/chiapao/front_end/member/login.jsp' : '#'}"
 								id="navbarDropdownMenuLink" role="button" ${(memVO.mem_Name == null )? '' : 'data-toggle=\"dropdown\"'}
 								aria-haspopup="true" aria-expanded="false" style="padding-top:${(memVO.mem_Name == null )? '': '3px'} "> 
 									${(memVO.mem_Name == null )? 'Log in':memVO.mem_Name}
@@ -136,7 +136,7 @@ body {
 							<!--有登入狀態圖示改為會員照片小圖 -->
 								<span class="lnr lnr-user" style="display: ${(memVO.mem_Name == null )? '': 'none'} "></span>
 								<span class="lnr nav-link" style="display:inline;">
-									<img class="nav-item " src="<%=request.getContextPath()%>/front_end/member/member.do?mem_No=${(memVO.mem_No == null)?' ':memVO.mem_No}" style="display:${(memVO.mem_Name == null )? 'none': ''};height:35px;width:35px;border-radius:50%;">
+									<img class="nav-item " src="<%=request.getContextPath()%>/member.do?mem_No=${(memVO.mem_No == null)?' ':memVO.mem_No}" style="display:${(memVO.mem_Name == null )? 'none': ''};height:35px;width:35px;border-radius:50%;">
 								</span>
 								</a>
 								

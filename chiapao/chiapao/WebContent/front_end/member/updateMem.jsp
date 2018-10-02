@@ -46,13 +46,13 @@
 
 <div class="container col-5 rounded ">
 
-	<form method="post" action="member.do" enctype="multipart/form-data" >
+	<form method="post" action="<%=request.getContextPath()%>/member.do" enctype="multipart/form-data" >
 			
     <table id="back">
         <tr>
             <td colspan="2" id="img-td">
             	<input type="file" id="fileElem"  accept="image/*" style="display:none"  onchange="handleFiles()" name="mem_Photo">
-                <a href="javascript:doClick()" style="color:black"><img class="custom-img" src="<%=request.getContextPath()%>/front_end/member/member.do?mem_No=<%= memVO.getMem_No()%>" id="img" ></a>
+                <a href="javascript:doClick()" style="color:black"><img class="custom-img" src="<%=request.getContextPath()%>/member.do?mem_No=<%= memVO.getMem_No()%>" id="img" ></a>
             </td>
             <td colspan="2" align="left">
 				<c:if test="${not empty errorMsgs}">
@@ -110,7 +110,7 @@
             <td colspan="4" class="tdbtn">
             <a href="<%=request.getContextPath() %>/front_end/header.jsp" class="btn btn-warning btn-sm " align="right" style="width:80px">取消</a>
             <input type="hidden" name="action" value="update">
-            <input type="submit" class="btn btn-warning btn-sm " align="right" id="send" style="width:80px" value="確認修改   "> 
+            <input type="submit" class="btn btn-warning btn-sm " align="right" id="send" style="width:80px" value="確認修改  "> 
             </td>
         </tr>
     </table>

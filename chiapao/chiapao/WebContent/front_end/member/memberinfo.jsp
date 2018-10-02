@@ -47,12 +47,12 @@
 
 <div class="container col-5 rounded ">
 
-	<form method="post" action="member.do" enctype="multipart/form-data" >
+	<form method="post" action="<%=request.getContextPath()%>/member.do" enctype="multipart/form-data" >
 	<%= memVO.getMem_No()%>			
     <table id="back">
         <tr>
             <td colspan="2" id="img-td">
-                <img class="custom-img" src="<%=request.getContextPath()%>/front_end/member/member.do?mem_No=<%= memVO.getMem_No()%>" id="img" >
+                <img class="custom-img" src="<%=request.getContextPath()%>/member.do?mem_No=<%= memVO.getMem_No()%>" id="img" >
             </td>
             <td colspan="2" align="left">
 				<c:if test="${not empty errorMsgs}">
