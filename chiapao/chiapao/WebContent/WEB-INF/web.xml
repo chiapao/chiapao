@@ -23,6 +23,15 @@
 		<servlet-name>MemServlet</servlet-name>
 		<url-pattern>/member.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<servlet-class>com.member.controller.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/front_end/member/logout.do</url-pattern>
+	</servlet-mapping>
 
   <servlet>
 		<servlet-name>EmpServlet</servlet-name>
@@ -39,12 +48,26 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>LogoutServlet</servlet-name>
-		<servlet-class>com.member.controller.LogoutServlet</servlet-class>
+		<servlet-name>EmpShowImg</servlet-name>
+		<servlet-class>com.employee.controller.EmpShowImg</servlet-class>
+		<multipart-config>
+        <max-file-size>10485760</max-file-size>
+        <max-request-size>20971520</max-request-size>
+        <file-size-threshold>5242880</file-size-threshold>
+    	</multipart-config>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>LogoutServlet</servlet-name>
-		<url-pattern>/front_end/member/logout.do</url-pattern>
+		<servlet-name>EmpShowImg</servlet-name>
+		<url-pattern>/empshow.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LogoutEmp</servlet-name>
+		<servlet-class>com.employee.controller.LogoutEmp</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutEmp</servlet-name>
+		<url-pattern>/emplogout.do</url-pattern>
 	</servlet-mapping>
 	
 	

@@ -569,7 +569,7 @@ System.out.println("我已經改完囉");
 					errorMsgs.add("尚未輸入帳號或密碼");
 				}else if(memVO != null){
 					System.out.println(memVO.getMem_Pw());
-					if(memVO.getMem_Pw().equals(mem_Id)) {
+					if(!memVO.getMem_Pw().equals(mem_Pw)) {
 						errorMsgs.add("密碼錯誤");
 					}
 				}else {
