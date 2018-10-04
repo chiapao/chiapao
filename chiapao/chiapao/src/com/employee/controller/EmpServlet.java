@@ -140,7 +140,7 @@ public class EmpServlet extends HttpServlet{
 				empsvc.addEmpWithAutoKeys(branch_No, emp_Acnum, emp_Psw, emp_Name, emp_Gender, emp_Pos, emp_Tel, emp_Photo, empauthorlist);
 				
 		
-				
+				res.sendRedirect(req.getContextPath()+"/back_end/employee/back_index.jsp");
 				
 			}catch(Exception e) {
 				errorMsgs.add("資料新增失敗");
@@ -168,7 +168,6 @@ public class EmpServlet extends HttpServlet{
 				EmpVO empVO = new EmpVO();
 				empVO = empSvc.findOneByEmpAcnum(emp_Acnum);
 				System.out.println(empVO);
-				System.out.println(empVO.getEmp_Psw());
 				
 				if(emp_Acnum.trim().isEmpty()||emp_Psw.trim().isEmpty()) {
 					errorMsgs.add("帳號或密碼尚未填寫");
@@ -195,7 +194,7 @@ public class EmpServlet extends HttpServlet{
 				
 				/***************************3.登入完成************/
 
-				res.sendRedirect(req.getContextPath()+"/back_end/employee/RegistEmp.jsp");
+				res.sendRedirect(req.getContextPath()+"/back_end/employee/back_index.jsp");
 				
 				
 				

@@ -171,7 +171,7 @@
 	            <div class="list-group" style="display:none" id="second-page3">
 	                 <a href="#" class="list-group-item list-group-item-action button3" style="background-color: #FAECD1" >上一頁</a>
 	                 
-	                <a href="#" class="list-group-item list-group-item-action" style="background-color: #FAECD1" ><b>&#187;</b>&nbsp;員工資料權限設定</a>
+	                <a href="<%=request.getContextPath() %>/back_end/employee/RegistEmp.jsp" class="list-group-item list-group-item-action" style="background-color: #FAECD1" ><b>&#187;</b>&nbsp;員工資料權限設定</a>
 	                
 	                <a href="#" class="list-group-item list-group-item-action" style="background-color: #FAECD1"><b>&#187;</b>&nbsp;員工權限修改</a>
 	                
@@ -210,6 +210,8 @@
                         </div>
                     </div>
                 </form>
-                
+               
+               <hr>
+				<hr>  
                &nbsp;
-   
+  
