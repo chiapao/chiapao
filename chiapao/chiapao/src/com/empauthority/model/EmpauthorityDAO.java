@@ -31,7 +31,7 @@ public class EmpauthorityDAO implements EmpauthorityDAO_interface{
 	private static final String INSERT_STMT=
 			"INSERT INTO EMPAUTHORITY(EMP_NO,FEA_NO) VALUES(?,?)";
 	private static final String FINDBY_EMPNO=
-			"SELECT FEA_NO FROM EMPAUTHORITY WHERE EMP_NO=?";
+			"SELECT FEA_NO FROM EMPAUTHORITY WHERE EMP_NO=? ORDER BY FEA_NO";
 	
 
 	@Override
@@ -78,7 +78,7 @@ public class EmpauthorityDAO implements EmpauthorityDAO_interface{
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				EmpauthorityVO empauthorVO = new EmpauthorityVO();
-				empauthorVO.setFea_No(rs.getString(1));
+				empauthorVO.setFea_No(rs.getString("FEA_NO"));
 				empauthlist.add(empauthorVO);
 			}
 			

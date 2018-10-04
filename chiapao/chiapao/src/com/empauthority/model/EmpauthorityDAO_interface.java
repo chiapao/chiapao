@@ -10,7 +10,7 @@ public interface EmpauthorityDAO_interface {
 	
 	public void insert(EmpauthorityVO empauthorVO);
 	public void update(EmpauthorityVO empauthorVO);
-	public List<EmpauthorityVO> oneEmpFealist(String empVO);
+	public List<EmpauthorityVO> oneEmpFealist(String emp_No);
 	public void insert2(EmpauthorityVO empauthorVO, Connection con);
 
 	

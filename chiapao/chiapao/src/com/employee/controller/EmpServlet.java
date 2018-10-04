@@ -188,6 +188,7 @@ public class EmpServlet extends HttpServlet{
 				/***************************2.帳號密碼皆正確****************************************/
 				System.out.println("帳密都沒錯");
 				
+				
 				HttpSession session = req.getSession();
 				session.setAttribute("empVO", empVO);
 				
