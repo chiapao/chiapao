@@ -65,7 +65,7 @@ body {
 		<div class="col-md-2">員工姓名</div>
 		<div class="col-md-2">員工照片</div>
 		<div class="col-md-2">員工權限</div>
-		<div class="col-md-2">修改/刪除</div>
+		<div class="col-md-2">修改</div>
 	</div>
 
 	<c:forEach var="emp_list" items="${listemp}">
@@ -90,10 +90,9 @@ body {
 					</c:if>
 				</c:forEach>								
 			</c:forEach>
-			
-					
+								
 			</div>
-			<div class="col-md-2"></div>
+			<div class="col-md-2"><a href="<%=request.getContextPath() %>/empauth.do?emp_No=${emp_list.emp_No}&action=updateAuthor" class="btn btn-warning btn-sm " align="right">修改</a></div>
 		</div>
 	</c:forEach>
 
