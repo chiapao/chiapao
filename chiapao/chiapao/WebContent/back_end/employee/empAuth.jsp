@@ -61,20 +61,22 @@ body {
 	</c:forEach>
 <HR>
 	<div class="row" style="text-align:center;">
-		<div class="col-md-2">員工編號</div>
+		<div class="col-md-2">員工編號</div>		
 		<div class="col-md-2">員工姓名</div>
+		<div class="col-md-2">員工職稱</div>
 		<div class="col-md-2">員工照片</div>
 		<div class="col-md-2">員工權限</div>
 		<div class="col-md-2">修改</div>
 	</div>
 
 	<c:forEach var="emp_list" items="${listemp}">
-<HR>
+<HR >
 		<div class="row" style="text-align:center;">
-			<div class="col-md-2">${emp_list.emp_No}</div>
-			<div class="col-md-2">${emp_list.emp_Name}</div>
-			<div class="col-md-2"><img src="<%=request.getContextPath()%>/empshow.do?emp_No=${emp_list.emp_No}" style="height:80px;width:80px;border-radius:50%" ></div>
-			<div class="col-md-2">						
+			<div class="col-md-2" style="vertical-align: middle;line-height:120px;">${emp_list.emp_No}</div>
+			<div class="col-md-2" style="vertical-align: middle;line-height:120px">${emp_list.emp_Name}</div>
+			<div class="col-md-2" style="vertical-align: middle;line-height:120px">${emp_list.emp_Pos}</div>
+			<div class="col-md-2" style="vertical-align: middle;line-height:120px"><img src="<%=request.getContextPath()%>/empshow.do?emp_No=${emp_list.emp_No}" style="height:80px;width:80px;border-radius:50%" ></div>
+			<div class="col-md-2" style="vertical-align: middle;line-height::120px">						
 <%
 	EmpauthorityService empauth = new EmpauthorityService();
 	List<EmpauthorityVO> empFeaList = new ArrayList();
@@ -92,7 +94,7 @@ body {
 			</c:forEach>
 								
 			</div>
-			<div class="col-md-2"><a href="<%=request.getContextPath() %>/empauth.do?emp_No=${emp_list.emp_No}&action=updateAuthor" class="btn btn-warning btn-sm " >修改</a></div>
+			<div class="col-md-2" style="vertical-align: middle;line-height::120px"><a href="<%=request.getContextPath() %>/empauth.do?emp_No=${emp_list.emp_No}&action=updateAuthor" class="btn btn-warning btn-sm " >修改</a></div>
 		</div>
 	</c:forEach>
 
