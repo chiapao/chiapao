@@ -48,7 +48,8 @@
 <div class="container col-5 rounded ">
 
 	<form method="post" action="<%=request.getContextPath()%>/member.do" enctype="multipart/form-data" >
-	<%= memVO.getMem_No()%>			
+	<%= memVO.getMem_No()%>	
+	${memVO.mem_No}		
     <table id="back">
         <tr>
             <td colspan="2" id="img-td">

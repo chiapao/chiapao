@@ -213,7 +213,7 @@ public class MemServlet extends HttpServlet{
 				memVO.setMem_Pw(mem_Pw);
 				//System.out.println("memPw="+memVO.getMem_Pw());
 				memVO.setMem_Bir(mem_Bir);
-				//System.out.println("memBir="+memVO.getMem_Bir());
+				System.out.println("memBir="+memVO.getMem_Bir());
 				memVO.setMem_Gender(mem_Gender);
 				//System.out.println("memGender="+memVO.getMem_Gender());
 				memVO.setMem_Mail(mem_Mail);

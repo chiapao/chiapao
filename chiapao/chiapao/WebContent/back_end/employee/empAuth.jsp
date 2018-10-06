@@ -20,18 +20,18 @@ pageContext.setAttribute("listemp",listemp);
 <html>
 <head>
 	<title>empAuthor</title>
-	        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <!-- linearicons CSS -->
-        <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-        <!-- h&f CSS -->
-        <!--your  CSS ============================================= -->
+<!-- 	        Bootstrap CSS -->
+<!--         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+<!--         linearicons CSS -->
+<!--         <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
+<!--         h&f CSS -->
+<!--         your  CSS ============================================= -->
 
         
-       <!--Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!--        Bootstrap JS -->
+<!--         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<!--         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+<!--         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
 
 <style type="text/css">
 #back {
@@ -92,11 +92,42 @@ body {
 			</c:forEach>
 								
 			</div>
-			<div class="col-md-2"><a href="<%=request.getContextPath() %>/empauth.do?emp_No=${emp_list.emp_No}&action=updateAuthor" class="btn btn-warning btn-sm " align="right">修改</a></div>
+			<div class="col-md-2"><a href="<%=request.getContextPath() %>/empauth.do?emp_No=${emp_list.emp_No}&action=updateAuthor" class="btn btn-warning btn-sm " >修改</a></div>
 		</div>
 	</c:forEach>
 
 </div>
+
+<c:if test="${openModal != null}">
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:1">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="z-index:2">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">修改權限</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       			<jsp:include page="/back_end/employee/OneEmpAuth.jsp"></jsp:include>
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ </c:if>
+        <script>
+    		 $("#exampleModalCenter").modal('show');   		 
+        </script>
+
+
+
 <jsp:include page="/back_end/PostFooter.jsp"></jsp:include>	
+
 </body>
 </html>

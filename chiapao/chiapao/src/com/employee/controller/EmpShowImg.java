@@ -29,7 +29,6 @@ public class EmpShowImg extends HttpServlet {
 			try {
 
 				String emp_No = req.getParameter("emp_No").trim();
-				System.out.println(emp_No);		
 				Statement stmt = con.createStatement();
 	
 				ResultSet rs = stmt.executeQuery(
@@ -51,7 +50,6 @@ public class EmpShowImg extends HttpServlet {
 				}
 					
 			}catch(Exception e){
-				System.out.println(e);
 				InputStream in = getServletContext().getResourceAsStream("/front_end/img/LOGO-04.png");
 				byte[] b = new byte[in.available()]; 
 				in.read(b);
