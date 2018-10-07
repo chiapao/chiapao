@@ -20,18 +20,6 @@ pageContext.setAttribute("listemp",listemp);
 <html>
 <head>
 	<title>empAuthor</title>
-<!-- 	        Bootstrap CSS -->
-<!--         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
-<!--         linearicons CSS -->
-<!--         <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
-<!--         h&f CSS -->
-<!--         your  CSS ============================================= -->
-
-        
-<!--        Bootstrap JS -->
-<!--         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-<!--         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
-<!--         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
 
 <style type="text/css">
 #back {
@@ -51,7 +39,7 @@ body {
 </head>
 <body>
 <jsp:include page="/back_end/PostHeader.jsp"></jsp:include> 
-
+<%@ include file="pages/page1.file" %> 
 <div class="container rounded " style="margin-top:200px;padding-top: 10px" id="back" >
 
 	<c:forEach var="branchVO" items="${branchSvc.getAll()}">
@@ -69,7 +57,7 @@ body {
 		<div class="col-md-2">修改</div>
 	</div>
 
-	<c:forEach var="emp_list" items="${listemp}">
+	<c:forEach var="emp_list" items="${listemp}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 <HR >
 		<div class="row" style="text-align:center;">
 			<div class="col-md-2" style="vertical-align: middle;line-height:120px;">${emp_list.emp_No}</div>
@@ -97,7 +85,7 @@ body {
 			<div class="col-md-2" style="vertical-align: middle;line-height::120px"><a href="<%=request.getContextPath() %>/empauth.do?emp_No=${emp_list.emp_No}&action=updateAuthor" class="btn btn-warning btn-sm " >修改</a></div>
 		</div>
 	</c:forEach>
-
+<%@ include file="pages/page2.file" %>
 </div>
 
 <c:if test="${openModal != null}">
