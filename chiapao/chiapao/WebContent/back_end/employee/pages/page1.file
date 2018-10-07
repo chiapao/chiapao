@@ -8,7 +8,7 @@
 %>
 
 <%  
-    rowNumber=list.size();
+    rowNumber=listemp.size();
     if (rowNumber%rowsPerPage !=0)
          pageNumber=rowNumber/rowsPerPage + 1;
     else pageNumber=rowNumber/rowsPerPage;    
@@ -32,7 +32,5 @@
     } 
 %>
 
-<%if (pageNumber>0){%>
-  <p><font  color="white">page<%=whichPage%>/<%=pageNumber%></font></p>
-<%}%>
+
 

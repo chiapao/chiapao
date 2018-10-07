@@ -109,25 +109,25 @@ public class EmpServlet extends HttpServlet{
 				/***************************2.開始新增資料****************************************/
 				
 				
-				EmpVO empVO = new EmpVO();
-				empVO.setBranch_No(branch_No);
+				EmpVO empVOregist = new EmpVO();
+				empVOregist.setBranch_No(branch_No);
 				System.out.println("branch_No="+branch_No);
-				empVO.setEmp_Acnum(emp_Acnum);
+				empVOregist.setEmp_Acnum(emp_Acnum);
 				System.out.println("emp_Acnum="+emp_Acnum);
-				empVO.setEmp_Psw(emp_Psw);
+				empVOregist.setEmp_Psw(emp_Psw);
 				System.out.println("emp_Psw="+emp_Psw);
-				empVO.setEmp_Name(emp_Name);
+				empVOregist.setEmp_Name(emp_Name);
 				System.out.println("emp_Name="+emp_Name);
-				empVO.setEmp_Gender(emp_Gender);
+				empVOregist.setEmp_Gender(emp_Gender);
 				System.out.println("emp_Gender="+emp_Gender);
-				empVO.setEmp_Tel(emp_Tel);
+				empVOregist.setEmp_Tel(emp_Tel);
 				System.out.println("emp_Tel="+emp_Tel);
-				empVO.setEmp_Pos(emp_Pos);
+				empVOregist.setEmp_Pos(emp_Pos);
 				System.out.println("emp_Pos="+emp_Pos);
 				
 				
 				if(!(errorMsgs.isEmpty())) {					
-					req.setAttribute("empVO", empVO);  // 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("empVOregist", empVOregist);  // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/employee/RegistEmp.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
