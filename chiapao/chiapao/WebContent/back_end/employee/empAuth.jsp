@@ -65,7 +65,7 @@ body {
 	<c:forEach var="emp_list" items="${listemp}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 <HR style="margin-bottom: 0 !important;">
 
-		<div class="row" style="text-align:center;">
+		<div class="row" style="text-align:center;"${(emp_list.emp_No==param.emp_No) ? 'bgcolor=#CCCCFF':''}>
 			<div class="col-md-2" style="vertical-align: middle;line-height:120px;">${emp_list.emp_No}</div>
 			<div class="col-md-2" style="vertical-align: middle;line-height:120px">${emp_list.emp_Name}</div>
 			<div class="col-md-2" style="vertical-align: middle;line-height:120px">${emp_list.emp_Pos}</div>
@@ -88,12 +88,13 @@ body {
 			</c:forEach>
 								
 			</div>
-			<div class="col-md-2" style="vertical-align: middle;line-height::120px"><a  href="<%=request.getContextPath() %>/empauth.do?emp_No=${emp_list.emp_No}&action=updateAuthor" class="btn btn-warning btn-sm " style="margin-top:45px;">修改</a></div>
+			<div class="col-md-2" style="vertical-align: middle;line-height::120px"><a  href="<%=request.getContextPath() %>/empauth.do?emp_No=${emp_list.emp_No}&action=updateAuthor&whichPage=<%=whichPage%>" class="btn btn-warning btn-sm " style="margin-top:45px;">修改</a></div>
 		</div>
 	</c:forEach>
 
 </div>
 <%@ include file="pages/page2.file" %>
+
 <c:if test="${openModal != null}">
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="z-index:1">

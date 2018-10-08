@@ -60,6 +60,7 @@ public class EmpauthServlet extends HttpServlet {
 		if("changeAuth".equals(action)) {
 		try {	
 			String emp_No = req.getParameter("emp_No");
+			
 			System.out.println("員工編號："+emp_No);
 			List<EmpauthorityVO> empauthorlist = new ArrayList();
 			String valuse[] =req.getParameterValues("fea_No");
