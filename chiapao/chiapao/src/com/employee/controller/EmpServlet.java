@@ -64,7 +64,7 @@ public class EmpServlet extends HttpServlet{
 				}
 				//姓名檢查
 				String emp_Name = req.getParameter("emp_Name").trim();
-				String emp_NameReq = "^[\u4e00-\u9fa5_a-zA-Z0-9]+$";
+				String emp_NameReq = "^[(\u4e00-\u9fa5)(_a-zA-Z)]+$";
 				if(emp_Name == null || emp_Name.length() == 0) {
 					errorMsgs.add("員工姓名尚未填寫");
 				}else if (!(emp_Name.matches(emp_NameReq))) {
@@ -72,11 +72,11 @@ public class EmpServlet extends HttpServlet{
 				}
 				//電話檢查				
 				String emp_Tel = req.getParameter("emp_Tel");
-				String emp_TelReq = "^[0-9]+$";
+				String emp_TelReq = "^\\d{0,10}$";
 				if(emp_Tel == null || emp_Tel.length()==0) {
 					errorMsgs.add("員工電話尚未填寫");
 				}else if(!(emp_Tel.matches(emp_TelReq))) {
-					errorMsgs.add("電話僅可填數字");
+					errorMsgs.add("電話僅可填數字或10碼內");
 				}
 				//職稱選擇
 				String emp_Pos = req.getParameter("emp_Pos");
