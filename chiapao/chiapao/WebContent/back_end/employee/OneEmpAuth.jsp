@@ -73,7 +73,7 @@ body {
         	<input type="hidden" class="btn btn-warning btn-sm " name="emp_No" value="${empVOauth.emp_No}" >
         	<input type="hidden" class="btn btn-warning btn-sm " name="action" value="changeAuth" >
         	<input type="submit" class="btn btn-warning btn-sm " value="確認" >
-        	<a href="#" class="btn btn-warning btn-sm " align="right">取消</a>
+        	<a href="<%=request.getContextPath()%>/back_end/employee/empAuth.jsp" class="btn btn-warning btn-sm " align="right">取消</a>
         </div>
       </div>
     </div>
