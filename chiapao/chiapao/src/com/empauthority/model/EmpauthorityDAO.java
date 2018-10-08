@@ -45,7 +45,7 @@ public class EmpauthorityDAO implements EmpauthorityDAO_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-			System.out.println("成功連線");
+//			System.out.println("成功連線");
 			pstmt.setString(1, empauthorVO.getEmp_No());
 			pstmt.setString(2, empauthorVO.getFea_No());
 			int rowCount = pstmt.executeUpdate();
@@ -75,7 +75,7 @@ public class EmpauthorityDAO implements EmpauthorityDAO_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(FINDBY_EMPNO);
-			System.out.println("連線成功");
+//			System.out.println("連線成功");
 			pstmt.setString(1,emp_No);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
