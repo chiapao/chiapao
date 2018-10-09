@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 public class BranchDAO implements BranchDAO_interface {
 	
 	private static DataSource ds = null;
+	
 	static {
 		try {
 			Context ctx = new InitialContext();
@@ -48,7 +49,7 @@ public class BranchDAO implements BranchDAO_interface {
 		int row = 0;
 
 		try {
-
+	
 			con = ds.getConnection();
 			try {
 				pstmt = con.prepareStatement(INSERT_STMT);
@@ -133,6 +134,7 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		int row = 0;
 		try {
+
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(DELETE_STMT);
 			pstmt.setString(1, Branch_No);
@@ -165,6 +167,7 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(GET_ONE_STMT);
 			pstmt.setString(1, Branch_No);
@@ -221,6 +224,7 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
@@ -277,6 +281,7 @@ public class BranchDAO implements BranchDAO_interface {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(GET__BY_CITY_STMT);
 			pstmt.setString(1, branch_City);
