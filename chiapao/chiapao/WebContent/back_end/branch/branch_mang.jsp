@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <a id="a1" href="branch_mang.jsp">
-                        <h1 class="d-flex justify-content-start">分店管理</h1>
+                        <h1 class="d-flex justify-content-start" style="color:#ac7339;">分店管理</h1>
                     </a>
                 </div>
             </div>

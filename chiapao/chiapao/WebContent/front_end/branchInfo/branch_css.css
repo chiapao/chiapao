@@ -42,8 +42,9 @@ td {
 }
 
 h1 {
-	font-weight: bolder;
+	font-weight: bolder!important;
 	color:#ffefcc !important;
+	
 }
 
 th {
@@ -51,7 +52,7 @@ th {
 }
 
 tbody>tr:hover {
-/* 	background-color: #ac7339; */
+	background-color: #ac7339;
 	color: black;
 }
 
