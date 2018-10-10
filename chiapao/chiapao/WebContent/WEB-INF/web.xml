@@ -71,6 +71,18 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>BranchServlet</servlet-name>
+		<servlet-class>com.branch.controller.BranchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BranchServlet</servlet-name>
+		<url-pattern>/branch.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	<servlet>
 		<servlet-name>EmpauthServlet</servlet-name>
 		<servlet-class>com.empauthority.controller.EmpauthServlet</servlet-class>
 	</servlet>

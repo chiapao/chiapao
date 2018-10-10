@@ -170,10 +170,10 @@
                             </tbody>
                         </table>
                         <div class="d-flex inline">
-                            <button class="d-flex ml-auto btn btn-info btn-sm" style="margin: 5px;" onclick="mytoggle()">
+                            <button class="d-flex ml-auto btn btn-warning btn-sm" style="margin: 5px;" onclick="mytoggle()">
                                 <i class="fas fa-edit">編輯</i>
                             </button>
-                            <button class="d-flex btn btn-info btn-sm" style="margin: 5px;">
+                            <button class="d-flex btn btn-warning btn-sm" style="margin: 5px;" onclick="location.href='<%=request.getContextPath()%>/back_end/branch/addbranch.jsp'">
                                 <i class="far fa-plus-square"><b>新增</b></i>
                             </button>
                         </div>
