@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -223,7 +225,23 @@ public class BranchServlet extends HttpServlet {
 				req.getRequestDispatcher("/back_end/branch/branch_mang.jsp").forward(req, res);
 			}
 		}
-
+		
+		
+		if("getonebranch".equals(action)) {
+			String branch_No = req.getParameter("branch_No");
+			System.out.println(branch_No);
+			BranchService brsvc = new BranchService();
+			BranchVO updateBrVO = new BranchVO();
+			
+			updateBrVO =brsvc.findByBranch_No(branch_No);
+			System.out.println(updateBrVO);
+			req.setAttribute("updateBrVO", updateBrVO);
+			
+			RequestDispatcher successView = req.getRequestDispatcher("/back_end/branch/updatebranch.jsp");
+			successView.forward(req, res);
+		}
+		
+		
 		//新增一間分店
 		if ("insert".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -290,18 +308,18 @@ public class BranchServlet extends HttpServlet {
 				}
 				Double branch_Del = null;
 				try {
-					Double.parseDouble(req.getParameter("branch_Del"));
+					branch_Del=Double.parseDouble(req.getParameter("branch_Del"));
 
 				} catch (NullPointerException e) {
 					errorMsgs.add("請輸入外送範圍");
 				} catch (NumberFormatException e) {
-					errorMsgs.add("經緯度需為數字");
+					errorMsgs.add("外送範圍需為數字(單位為km)");
 				}
 
 				Integer branch_Tdesk = null;
 				
 				try {
-					branch_Tdesk = Integer.valueOf(req.getParameter("branch_Tdesk"));
+					branch_Tdesk = Integer.parseInt(req.getParameter("branch_Tdesk"));
 					if (branch_Tdesk == 0 || branch_Tdesk == null) {
 						errorMsgs.add("請輸入桌數");
 					}

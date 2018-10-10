@@ -31,11 +31,6 @@ body {
 	width: auto;
 }
 
-
-td {
-	font-size: 12px;
-}
-
 h1 {
 	font-weight: bolder;
 }
@@ -46,7 +41,6 @@ th {
 
 tbody>tr:hover {
 	background-color: #fcf4e8;
-/* 	color: black; */
 }
 
 #div1 {

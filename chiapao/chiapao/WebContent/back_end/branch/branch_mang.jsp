@@ -135,8 +135,10 @@
                                         <td>${brVO.branch_Addr}</td>
                                         <td>${brVO.branch_Tel}</td>
 
-                                        <td><input id="update" type="button" class="update btn btn-warning btn-sm" value="修改" style="display: none"> <input type="hidden" name="action" value="update"> <input id="branch_No" type="hidden" name="branch_No" value="${brVO.branch_No}">
-
+                                        <td>
+                                       
+                                        <a href="<%=request.getContextPath()%>/back_end/branch/branch.do?branch_No=${brVO.branch_No}&action=getonebranch" id="update" type="button" class="update btn btn-warning btn-sm" style="display: none">修改</a>
+										
                                         </td>
                                         <td><input type="button" class="del btn btn-danger btn-sm" value="刪除 " style="display: none"> <input type="hidden" name="action" value="delete"> <input type="hidden" name="branch_No" value="${brVO.branch_No}"></td>
 
@@ -154,10 +156,9 @@
                                             <td>${brVO.branch_Addr}</td>
                                             <td>${brVO.branch_Tel}</td>
                                             <td>
-                                                <FORM id="delform" method="post" action="branch.do">
-                                                    <input id="update" type="button" class="update btn btn-warning btn-sm" value="修改" style="display: none">
 
-                                                </FORM>
+                                                    <a href="<%=request.getContextPath()%>/back_end/branch/branch.do?branch_No=${brVO.branch_No}&action=getonebranch" id="update" type="button" class="update btn btn-warning btn-sm" style="display: none">修改</a>
+
                                             </td>
                                             <td>
                                                 <FORM id="delform" method="post" action="branch.do">
