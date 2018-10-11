@@ -18,7 +18,19 @@
 <link rel="stylesheet"
 	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <style type="text/css">
-/*navbar*/
+/*header*/
+.dropdown-menu li:hover .sub-menu {
+	visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+}
+
+.nav-link {
+	font-size: 20px;
+}
+
 .lnr-user {
 	color: #FFF;
 	font-size: 20px;
@@ -33,12 +45,13 @@
 .lnr-cart {
 	color: #FFF;
 	font-size: 23px;
-	margin-right: 15px;
+	margin-right: 10px;
 }
 
-.imgicon {
-	margin-top: 5px;
-}
+/* .imgicon { */
+/* 	margin-top: 10px; */
+/* } */
+
 
 .bg-black {
 	background-color: #000000;
@@ -91,10 +104,10 @@ body {
 						<ul class="navbar-nav nav-fill mx-auto">
 							<li>
 								<a class="index_page" href="<%=request.getContextPath()%>/front_end/index.jsp">
-									<img src="/chiapao/front_end/img/LOGO-04.png" style="width:50px;"></a>
+									<img src="/CA103G4/front_end/img/LOGO-04.png" style="width:50px;"></a>
 							</li>
 							
-							<li class="nav-item active">
+							<li class="nav-item ">
 								<a class="nav-link" href="<%=request.getContextPath()%>/front_end/branchInfo/branch_mang.jsp">分店資訊
 									<span class="sr-only">(current)</span></a>
 							</li>
@@ -106,7 +119,7 @@ body {
 								aria-haspopup="true" aria-expanded="false"> 餐點 </a>
 								<div class="dropdown-menu"
 									aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/menu/listAllMenu2.jsp">經典餐點</a> 
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/menu/listAllMenu4.jsp">經典餐點</a> 
 									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/custommeals/addCustommeals2.jsp">客製化點餐</a>
 								</div></li>
 							<li class="nav-item"><a class="nav-link" href="#">線上預約訂位</a>
@@ -114,12 +127,12 @@ body {
 							<li class="nav-item"><a class="nav-link"
 								href="<%=request.getContextPath()%>/front_end/post/listAllpost.jsp">餐點分享</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="#">活動快訊</a></li>
+							<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front_end/activity/listAllActivity.jsp"">活動快訊</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">線上客服</a></li>
 							<li>&nbsp;</li>
 							<li>&nbsp;</li>
 							<li>&nbsp;</li>
-							<li class="nav-link imgicon"><a href="..."><span
+							<li class="nav-link imgicon"><a href="<%=request.getContextPath()%>/front_end/shoppingCart/Cart.jsp"><span
 									class="lnr lnr-cart"></span></a></li>
 							<li class="nav-link imgicon"><a href="gallery.html"></a><span
 								class="lnr lnr-alarm"></span></li>
@@ -128,7 +141,7 @@ body {
 							<!-- 無登入狀態 點選人頭示意圖將導入Login.jsp -->
 
 								<a
-								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/chiapao/front_end/member/login.jsp' : '#'}"
+								class="nav-link dropdown-toggle" href="${(memVO.mem_Name == null )? '/CA103G4/front_end/member/login.jsp' : '#'}"
 								id="navbarDropdownMenuLink" role="button" ${(memVO.mem_Name == null )? '' : 'data-toggle=\"dropdown\"'}
 								aria-haspopup="true" aria-expanded="false" style="padding-top:${(memVO.mem_Name == null )? '': '3px'} "> 
 									${(memVO.mem_Name == null )? 'Log in':memVO.mem_Name}
@@ -136,18 +149,19 @@ body {
 							<!--有登入狀態圖示改為會員照片小圖 -->
 								<span class="lnr lnr-user" style="display: ${(memVO.mem_Name == null )? '': 'none'} "></span>
 								<span class="lnr nav-link" style="display:inline;">
-									<img class="nav-item " src="<%=request.getContextPath()%>/member.do?mem_No=${(memVO.mem_No == null)?' ':memVO.mem_No}" style="display:${(memVO.mem_Name == null )? 'none': ''};height:35px;width:35px;border-radius:50%;">
+									<img class="nav-item " src="<%=request.getContextPath()%>/front_end/member/member.do?mem_No=${(memVO.mem_No == null)?' ':memVO.mem_No}" style="display:${(memVO.mem_Name == null )? 'none': ''};height:35px;width:35px;border-radius:50%;">
 								</span>
 								</a>
 								
 							<!-- 有登入狀態才會有這裏的會員相關資料 -->
 								<div class="dropdown-menu"
-									aria-labelledby="navbarDropdownMenuLink" style="display: ${(memVO.mem_Name == null )? 'none': ''} ">
+									aria-labelledby="navbarDropdownMenuLink" style="visibility: ${(memVO.mem_Name == null )? 'hidden': ''} ">
 							<!-- 以下可以自己新增相關會員附屬功能 -->
 									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/member/memberinfo.jsp">會員基本資料</a>
-									<a class="dropdown-item" href="#">儲值紀錄</a> 
-									<a class="dropdown-item" href="#">訂單查詢</a> 
-									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/post/listPostByMember.jsp">我的貼文</a>
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/storedrecord/addNewtransaction.jsp">儲值點數</a>
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/storedrecord/transaction_query.jsp">儲值紀錄</a> 
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/protected_front/orderform/listOneOrderformByMemNo3.jsp">訂單查詢</a> 
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/protected_front/post/listPostByMember.jsp">我的貼文</a>
 									<a class="dropdown-item" href="<%=request.getContextPath()%>/front_end/member/logout.do" >登出</a>
 								</div>
 							</li>

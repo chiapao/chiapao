@@ -177,11 +177,11 @@ public class MemServlet extends HttpServlet{
 				
 				//預設收件郵遞區號驗證
 				String mem_Repno = req.getParameter("mem_Repno");
-				String mem_RepnoReg = "^\\d{5}$";
+				String mem_RepnoReg = "^\\d{3}$";
 				if(mem_Repno.isEmpty()) {
 					
 				}else if(!(mem_Repno.trim().matches(mem_RepnoReg))) {
-					errorMsgs.add("僅能輸入數字(eg.33344)");
+					errorMsgs.add("僅能輸入數字(eg.320)");
 				}
 				
 				//預設收件人縣市

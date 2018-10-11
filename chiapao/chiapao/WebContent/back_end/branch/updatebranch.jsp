@@ -25,8 +25,6 @@ BranchVO updateBrVO = (BranchVO)request.getAttribute("updateBrVO");
 	<jsp:include page="/back_end/HeadquarterHeader.jsp"></jsp:include>
 <!--your html   start==================================================================================-->
 <div class="container col-5 rounded ">
-<%= updateBrVO.getBranch_City()%>
-<%= updateBrVO.getBranch_Dist()%>
 	<form method="post" action="<%=request.getContextPath()%>/back_end/branch/branch.do" >
     <table id="back" style="padding-top:20px;">
     	<tr><td colspan="4">

@@ -48,8 +48,7 @@
 <div class="container col-5 rounded ">
 
 	<form method="post" action="<%=request.getContextPath()%>/member.do" enctype="multipart/form-data" >
-	<%= memVO.getMem_No()%>	
-	${memVO.mem_No}		
+	
     <table id="back">
         <tr>
             <td colspan="2" id="img-td">
@@ -67,7 +66,7 @@
             </td>
         </tr>
         <tr>
-            <td class="td1" ><label for="mem_Id" class="col-form-label">帳號</label></td><td class="td2" ><input type="text" class="form-control-sm" id="mem_Id" name="mem_Id" value="${mem_Id}" readonly="readonly"></td><td colspan="2" readonly="readonly">預設線上訂單收件人資料：(以下非必填)</td>
+            <td class="td1" ><label for="mem_Id" class="col-form-label">帳號</label></td><td class="td2" ><input type="z" class="form-control-sm" id="mem_Id" name="mem_Id" value="${mem_Id}" readonly="readonly"></td><td colspan="2" readonly="readonly">預設線上訂單收件人資料：(以下非必填)</td>
         </tr>
         <tr>
             <td class="td1"><label for="mem_Pw" class="col-form-label">密碼</label></td><td class="td2" ><input type="password" class="form-control-sm" id="mem_Pw" name="mem_Pw" value="<%=memVO.getMem_Pw()%>" readonly="readonly"></td>

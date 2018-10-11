@@ -117,15 +117,15 @@ public class EmpauthorityDAO implements EmpauthorityDAO_interface{
 		try {
 //			con = ds.getConnection();
 			pstmt=con.prepareStatement(INSERT_STMT);
-			System.out.println("上一個過來的連線成功");
+//			System.out.println("上一個過來的連線成功");
 			System.out.println(empauthorVO.getEmp_No());
 			System.out.println(empauthorVO.getFea_No());
 			
 			pstmt.setString(1, empauthorVO.getEmp_No());
-			System.out.println("pstmt放入empauthorVO.getEmp_No()");
+//			System.out.println("pstmt放入empauthorVO.getEmp_No()");
 			
 			pstmt.setString(2, empauthorVO.getFea_No());
-			System.out.println("pstmt放入empauthorVO.getFea_No()");
+//			System.out.println("pstmt放入empauthorVO.getFea_No()");
 			
 			pstmt.executeUpdate();
 

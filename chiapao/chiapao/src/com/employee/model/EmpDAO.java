@@ -312,7 +312,7 @@ public class EmpDAO implements EmpDAO_interface{
 			
 			//現在開始同時新增員工權限
 			EmpauthorityDAO dao = new EmpauthorityDAO();
-			System.out.println("員工權限empauthorlist.size()="+empauthorlist.size());
+//			System.out.println("員工權限empauthorlist.size()="+empauthorlist.size());
 			for(EmpauthorityVO empauthorVO : empauthorlist) {
 				empauthorVO.setEmp_No(new String(pk_emp_no));
 				dao.insert2(empauthorVO, con);
