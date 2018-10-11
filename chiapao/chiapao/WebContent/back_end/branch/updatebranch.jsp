@@ -80,7 +80,8 @@ BranchVO updateBrVO = (BranchVO)request.getAttribute("updateBrVO");
         <tr>
             <td colspan="4" class="tdbtn">
             <a href="<%=request.getContextPath() %>/back_end/branch/branch_mang.jsp" class="btn btn-warning btn-sm " align="right">取消</a>
-            <input type="hidden" name="action" value="insert">
+            <input type="hidden" name="action" value="Update">
+            <input type="hidden" name="branch_No" value="${updateBrVO.branch_No}">
             <input type="submit" class="btn btn-warning btn-sm " align="right" id="send" value="確認">                     
             </td>
         </tr>

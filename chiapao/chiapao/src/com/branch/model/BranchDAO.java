@@ -107,6 +107,7 @@ public class BranchDAO implements BranchDAO_interface {
 			pstmt.setInt(11, BranchVO.getBranch_Tdesk());
 			pstmt.setString(12, BranchVO.getBranch_No());
 			row = pstmt.executeUpdate();
+			System.out.println("已經修改完成"+row+"筆資料");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
