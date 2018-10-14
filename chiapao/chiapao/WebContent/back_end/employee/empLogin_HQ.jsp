@@ -15,8 +15,7 @@
 
         
        <!--Bootstrap JS -->
-       <script src="https://code.jquery.com/jquery-3.2.1.min.js "></script>
-<!--         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --><!-- 垃圾jquery庫 勿用!!! -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
@@ -37,12 +36,33 @@ body {
 </style>   
 </head>
 <body>
-<jsp:include page="/back_end/PostHeader.jsp"></jsp:include> 
+<jsp:include page="/back_end/HeadquarterHeader.jsp" flush="true" />
 
+<div class="container col-3 rounded " style="margin-top:200px;padding-top: 10px" id="back" >
+<c:if test="${not empty errorMsgs}">
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color:black">${message}</li>
+			</c:forEach>
+		</ul>
+</c:if>
+	<form action="emp.do" method="POST" enctype="multipart/form-data">
 
-<img class="container col-12 rounded " src="<%=request.getContextPath()%>/front_end/img/LOGO-04.png"  style="padding-left:200px;max-width:90% ;max-height:90%;">
+		<div class="form-group">
+			<label for="mger_Acnum">員工帳號</label>
+			<input type="text" class="form-control form-control-sm" id="mger_Acnum" name="mger_Acnum" >
+		</div>
+		<div class="form-group">
+			<label for="mger_Psw">員工密碼</label>
+			<input type="password" class="form-control form-control-sm" id="mger_Psw" name="mger_Psw" >
+		</div>
 
-
-<jsp:include page="/back_end/PostFooter.jsp"></jsp:include>	
+		<div style="text-align: center;" >
+			<input type="hidden" name="action" value="login">	
+			<input type="submit" class="btn btn-warning" value="登入" style="margin-bottom:10px" >
+		</div>
+	</form>	
+</div>
+<jsp:include page="/back_end/HeadquarterFooter.jsp" />	
 </body>
 </html>

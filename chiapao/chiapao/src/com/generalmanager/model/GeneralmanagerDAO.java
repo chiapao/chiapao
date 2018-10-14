@@ -28,7 +28,9 @@ public class GeneralmanagerDAO implements GeneralmanagerDAO_interface{
 	private static final String UPDATE_STMT =
 			"UPDATE GENERALMANAGER SET MGER_ACNUM=?,MGER_PSW=? WHERE MGER_NO =?";
 	private static final String DELET_STMT =
-			"DELETE FROM GENERALMANAGER WHERE  MGER_NO = ?";
+			"DELETE FROM GENERALMANAGER WHERE MGER_NO = ?";
+	private static final String FINDBYACNUM=
+			"SELECT * FROM GENERALMANAGER WHERE MGER_ACNUM=?";
 
 	@Override
 	public void insert(GeneralmanagerVO mgerVO) {
@@ -136,6 +138,26 @@ public class GeneralmanagerDAO implements GeneralmanagerDAO_interface{
 	@Override
 	public List<GeneralmanagerVO> getAll() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GeneralmanagerVO findByAcnum(String mger_Acnum) {
+		// TODO Auto-generated method stub
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt =  con.prepareStatement(FINDBYACNUM);
+			
+			pstmt.setString(1, mger_Acnum);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
